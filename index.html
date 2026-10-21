@@ -1,0 +1,1688 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="theme-color" content="#090a0e" />
+<title>JoinSpark AI 视频导演 101 · 19组实战任务书</title>
+<meta name="description" content="JoinSpark AI 视频导演 101 Workshop 实战任务书。19组统一执行版：每人一张海报、一条15秒视频，模型与镜头要求全场统一。" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #090a0e;
+    --bg-2: #10131a;
+    --card: #141820;
+    --card-2: #1b202b;
+    --cream: #f6f2e9;
+    --text: #f3efe6;
+    --muted: #d2cdc2;
+    --label: #b7b1a4;
+    --gold: #e4c48a;
+    --gold-2: #f3ddb0;
+    --line: rgba(243, 239, 230, 0.12);
+    --line-strong: rgba(228, 196, 138, 0.45);
+    --ice: #b9dcff;
+    --coral: #f0b09a;
+    --mint: #b7e7d4;
+    --shadow: 0 24px 70px rgba(0, 0, 0, 0.35);
+    --nav: 68px;
+    --sans: "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+    --display: Syne, "PingFang SC", "Hiragino Sans GB", sans-serif;
+    --measure: 44rem;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.8;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection { background: rgba(228, 196, 138, 0.35); color: #fff; }
+  :focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+  a { color: var(--gold-2); text-underline-offset: 3px; }
+  button, input { font-family: inherit; }
+
+  .topnav {
+    position: fixed;
+    inset: 0 0 auto 0;
+    z-index: 40;
+    height: var(--nav);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 0 22px;
+    background: rgba(9, 10, 14, 0.82);
+    border-bottom: 1px solid var(--line);
+    backdrop-filter: blur(16px);
+  }
+  .brand {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--cream);
+    flex: none;
+  }
+  .brand b {
+    font-family: var(--display);
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    font-size: 14px;
+  }
+  .brand span {
+    color: var(--gold);
+    font-size: 12px;
+    letter-spacing: 0.16em;
+  }
+  .navlinks {
+    display: flex;
+    gap: 4px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .navlinks::-webkit-scrollbar { display: none; }
+  .navlinks a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 14px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+  .navlinks a:hover,
+  .navlinks a.active { color: var(--bg); background: var(--gold); }
+  .navmeta {
+    margin-left: auto;
+    color: var(--gold);
+    font-family: var(--display);
+    letter-spacing: 0.14em;
+    font-size: 12px;
+    flex: none;
+  }
+
+  .hero {
+    position: relative;
+    margin-top: var(--nav);
+    padding: 64px 28px 36px;
+    overflow: hidden;
+    background:
+      radial-gradient(900px 420px at 8% 0%, rgba(228, 196, 138, 0.18), transparent 58%),
+      radial-gradient(640px 360px at 100% 20%, rgba(120, 170, 210, 0.12), transparent 55%),
+      var(--bg);
+  }
+  .hero-mark {
+    position: absolute;
+    left: 28px;
+    top: 96px;
+    z-index: 0;
+    font-family: var(--display);
+    font-size: 200px;
+    line-height: 0.8;
+    letter-spacing: -0.08em;
+    color: rgba(228, 196, 138, 0.09);
+    pointer-events: none;
+    user-select: none;
+  }
+  .frame { position: absolute; inset: 22px; pointer-events: none; }
+  .frame i { position: absolute; width: 34px; height: 34px; border: 1.5px solid rgba(228, 196, 138, 0.75); }
+  .frame i:nth-child(1) { top: 0; left: 0; border-right: 0; border-bottom: 0; }
+  .frame i:nth-child(2) { top: 0; right: 0; border-left: 0; border-bottom: 0; }
+  .frame i:nth-child(3) { bottom: 0; left: 0; border-right: 0; border-top: 0; }
+  .frame i:nth-child(4) { bottom: 0; right: 0; border-left: 0; border-top: 0; }
+  .hero-inner {
+    width: min(1180px, 100%);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.35fr 0.8fr;
+    gap: 48px;
+    align-items: center;
+    position: relative;
+  }
+  .kicker {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--gold);
+    letter-spacing: 0.18em;
+    font-size: 12px;
+    font-family: var(--display);
+    margin: 0 0 18px;
+  }
+  .rec {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: #e25b4a;
+    box-shadow: 0 0 0 0 rgba(226, 91, 74, 0.7);
+    animation: pulse 1.8s infinite;
+  }
+  @keyframes pulse {
+    70% { box-shadow: 0 0 0 8px rgba(226, 91, 74, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(226, 91, 74, 0); }
+  }
+  h1 {
+    margin: 0;
+    font-size: clamp(44px, 5.4vw, 84px);
+    line-height: 1.08;
+    font-weight: 650;
+    letter-spacing: -0.03em;
+    color: var(--cream);
+    text-shadow: 0 0 42px rgba(228, 196, 138, 0.16);
+  }
+  .hero-sub {
+    margin: 18px 0 0;
+    font-size: clamp(18px, 2vw, 22px);
+    color: var(--gold-2);
+    line-height: 1.55;
+  }
+  .hero-lead {
+    max-width: 40rem;
+    margin: 18px 0 0;
+    color: var(--muted);
+    font-size: 17px;
+  }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 46px;
+    padding: 0 18px;
+    border-radius: 999px;
+    text-decoration: none;
+    border: 1px solid var(--line-strong);
+    color: var(--cream);
+    background: transparent;
+    cursor: pointer;
+    font-size: 15px;
+  }
+  .btn.primary { background: var(--gold); color: #1a140c; border-color: var(--gold); font-weight: 650; }
+  .btn:hover { transform: translateY(-1px); }
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 10px;
+    margin-top: 34px;
+    max-width: 640px;
+  }
+  .stat {
+    padding: 12px 12px 10px;
+    border-top: 1px solid var(--line-strong);
+  }
+  .stat b {
+    display: block;
+    font-family: var(--display);
+    font-size: 26px;
+    letter-spacing: 0.04em;
+    color: var(--cream);
+    line-height: 1.1;
+  }
+  .stat span { display: block; margin-top: 4px; color: var(--label); font-size: 13px; line-height: 1.4; }
+
+  .slate {
+    background: linear-gradient(180deg, rgba(255,255,255,0.035), rgba(255,255,255,0.015));
+    border: 1px solid var(--line-strong);
+    border-radius: 18px;
+    box-shadow: var(--shadow);
+    padding: 22px 22px 18px;
+  }
+  .slate-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    color: var(--gold);
+    font-family: var(--display);
+    letter-spacing: 0.14em;
+    font-size: 12px;
+    margin-bottom: 8px;
+  }
+  .slate-top span { white-space: nowrap; }
+  .slate h2 {
+    margin: 0 0 14px;
+    font-size: 28px;
+    line-height: 1.25;
+    font-weight: 650;
+  }
+  .slate dl { margin: 0; }
+  .slate dl > div {
+    display: grid;
+    grid-template-columns: 72px 1fr;
+    gap: 10px;
+    padding: 9px 0;
+    border-top: 1px solid var(--line);
+    font-size: 15px;
+  }
+  .slate dt { color: var(--label); }
+  .slate dd { margin: 0; color: var(--cream); }
+  .lineup-wrap {
+    width: min(1180px, 100%);
+    margin: 36px auto 0;
+    position: relative;
+    z-index: 1;
+  }
+  .lineup-label {
+    margin: 0 0 12px;
+    color: var(--gold);
+    font-family: var(--display);
+    letter-spacing: 0.16em;
+    font-size: 12px;
+  }
+  .lineup {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+    gap: 8px;
+  }
+  .shot {
+    text-align: left;
+    min-height: 96px;
+    padding: 12px 12px 14px;
+    border-radius: 14px;
+    border: 1px solid var(--line);
+    background: rgba(16, 19, 26, 0.72);
+    color: var(--cream);
+    cursor: pointer;
+  }
+  .shot:hover { border-color: var(--tone, var(--gold)); background: rgba(228, 196, 138, 0.06); }
+  .shot .no {
+    font-family: var(--display);
+    color: var(--tone, var(--gold));
+    font-size: 12px;
+    letter-spacing: 0.08em;
+  }
+  .shot .ttl {
+    display: block;
+    margin-top: 6px;
+    font-size: 15px;
+    line-height: 1.45;
+    font-weight: 650;
+  }
+
+  main { width: min(1180px, calc(100% - 40px)); margin: 0 auto; }
+  section { padding: 78px 0; border-top: 1px solid var(--line); scroll-margin-top: 84px; }
+  .sec-label {
+    margin: 0 0 8px;
+    color: var(--gold);
+    font-family: var(--display);
+    letter-spacing: 0.18em;
+    font-size: 12px;
+  }
+  h2.sec {
+    margin: 0;
+    font-size: clamp(30px, 3vw, 42px);
+    line-height: 1.2;
+    font-weight: 650;
+    letter-spacing: -0.02em;
+  }
+  .sec-intro { max-width: var(--measure); color: var(--muted); margin: 12px 0 0; }
+  .origin {
+    display: inline-block;
+    margin-top: 14px;
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    color: var(--label);
+  }
+
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-top: 28px;
+  }
+  .step, .card, .rule, .brief, .q, .note, .score-item {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+  }
+  .step { padding: 20px 20px 18px; }
+  .step em {
+    font-style: normal;
+    font-family: var(--display);
+    color: var(--gold);
+    letter-spacing: 0.12em;
+    font-size: 13px;
+  }
+  .step h3 { margin: 8px 0; font-size: 20px; font-weight: 650; }
+  .step p { margin: 0; color: var(--muted); font-size: 15.5px; }
+
+  .principle-grid { display: grid; gap: 14px; margin-top: 26px; }
+  .card { padding: 22px 24px; }
+  .card .idx {
+    font-family: var(--display);
+    color: var(--gold);
+    letter-spacing: 0.12em;
+    font-size: 13px;
+  }
+  .card p { margin: 8px 0 0; max-width: 52rem; }
+
+  .rule-block { margin-top: 34px; }
+  .rule-block h3 {
+    margin: 0 0 6px;
+    font-size: 26px;
+    font-weight: 650;
+  }
+  .rule-block .hint { margin: 0 0 14px; color: var(--label); font-size: 14px; }
+  .rules { display: grid; gap: 10px; }
+  .rule {
+    display: grid;
+    grid-template-columns: 72px 1fr;
+    gap: 8px 18px;
+    padding: 16px 18px;
+  }
+  .rule .no {
+    font-family: var(--display);
+    font-size: 22px;
+    color: var(--gold);
+    letter-spacing: 0.04em;
+    line-height: 1.2;
+  }
+  .rule .name { color: var(--gold-2); font-size: 14px; margin-bottom: 4px; }
+  .rule p { margin: 0; max-width: 48rem; }
+
+  .free {
+    margin-top: 14px;
+    padding: 22px 24px;
+    border-radius: 16px;
+    border: 1px dashed var(--line-strong);
+    background: rgba(228, 196, 138, 0.04);
+  }
+  .free h3 { margin: 0 0 8px; font-size: 22px; }
+  .free p { margin: 8px 0 0; max-width: 50rem; }
+
+  .questions { display: grid; gap: 10px; margin-top: 22px; }
+  .q {
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    gap: 8px;
+    align-items: center;
+    padding: 16px 18px;
+  }
+  .q b {
+    font-family: var(--display);
+    color: var(--gold);
+    font-size: 20px;
+  }
+  .q p { margin: 0; font-size: 18px; }
+  .note { margin-top: 14px; padding: 18px 20px; max-width: 52rem; }
+  .note p { margin: 0; }
+
+  .table-wrap { margin-top: 22px; overflow-x: auto; border: 1px solid var(--line); border-radius: 16px; }
+  table { width: 100%; border-collapse: collapse; min-width: 720px; }
+  th, td { text-align: left; padding: 14px 16px; vertical-align: top; border-bottom: 1px solid var(--line); font-size: 15.5px; }
+  th { color: var(--gold); font-weight: 650; background: #171b23; }
+  td.mono { font-family: var(--display); letter-spacing: 0.04em; color: var(--gold-2); white-space: nowrap; }
+  .supp { margin-top: 16px; display: grid; gap: 10px; }
+  .supp article {
+    padding: 14px 16px;
+    border-radius: 12px;
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+  }
+  .supp strong { color: var(--gold-2); }
+
+  .toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    margin-top: 22px;
+    position: sticky;
+    top: var(--nav);
+    z-index: 20;
+    padding: 10px 0;
+    background: linear-gradient(var(--bg), var(--bg) 70%, rgba(9,10,14,0));
+  }
+  .filters { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip, .mode {
+    min-height: 40px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    background: var(--card);
+    color: var(--muted);
+    padding: 0 14px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  .chip[aria-pressed="true"] { background: var(--gold); color: #1a140c; border-color: var(--gold); font-weight: 650; }
+  .search {
+    flex: 1 1 220px;
+    min-height: 42px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    background: var(--card);
+    color: var(--cream);
+    padding: 0 16px;
+    font-size: 16px;
+  }
+  .count { margin: 0; color: var(--label); font-size: 14px; }
+
+  .workspace {
+    margin-top: 8px;
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 18px;
+    align-items: start;
+  }
+  .glist {
+    position: sticky;
+    top: calc(var(--nav) + 62px);
+    max-height: calc(100svh - var(--nav) - 86px);
+    overflow: auto;
+    padding-right: 4px;
+    display: grid;
+    gap: 6px;
+    align-content: start;
+  }
+  .gbtn {
+    width: 100%;
+    text-align: left;
+    display: grid;
+    grid-template-columns: 42px 1fr;
+    gap: 8px;
+    padding: 10px 10px;
+    border-radius: 12px;
+    border: 1px solid transparent;
+    background: transparent;
+    color: var(--text);
+    cursor: pointer;
+  }
+  .gbtn:hover { background: rgba(255,255,255,0.03); }
+  .gbtn[aria-selected="true"] {
+    background: var(--card);
+    border-color: var(--line);
+    box-shadow: inset 2px 0 0 var(--tone, var(--gold));
+  }
+  .gbtn .num {
+    font-family: var(--display);
+    color: var(--tone, var(--gold));
+    font-size: 16px;
+    padding-top: 2px;
+  }
+  .gbtn .t { display: block; font-size: 15px; line-height: 1.45; }
+  .gbtn .s { display: block; color: var(--label); font-size: 12.5px; line-height: 1.4; margin-top: 2px; }
+  .gstage { min-width: 0; }
+  .workspace.all {
+    grid-template-columns: 1fr;
+  }
+  .workspace.all .glist { display: none; }
+
+  .brief {
+    padding: 26px 26px 22px;
+    border-top: 3px solid var(--tone, var(--gold));
+    animation: rise 0.35s ease;
+    scroll-margin-top: 160px;
+  }
+  .workspace.all .brief { margin-bottom: 16px; }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: none; }
+  }
+  .brief h3 {
+    margin: 10px 0 0;
+    font-size: clamp(26px, 3vw, 36px);
+    line-height: 1.28;
+    font-weight: 650;
+    letter-spacing: -0.02em;
+  }
+  .pillrow { display: flex; flex-wrap: wrap; gap: 8px; }
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    min-height: 28px;
+    padding: 0 10px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    color: var(--tone, var(--gold));
+    font-size: 13px;
+  }
+  .block { margin-top: 22px; }
+  .block h4 {
+    margin: 0 0 8px;
+    font-size: 14px;
+    letter-spacing: 0.12em;
+    color: var(--gold);
+    font-weight: 650;
+  }
+  .block p { margin: 0; max-width: 48rem; }
+  .block ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; max-width: 48rem; }
+  .block li {
+    position: relative;
+    padding: 10px 12px 10px 16px;
+    background: rgba(255,255,255,0.025);
+    border-radius: 10px;
+    border-left: 2px solid var(--tone, var(--gold));
+  }
+  .specgrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+  .specgrid span {
+    display: block;
+    padding: 10px 12px;
+    border-radius: 10px;
+    background: rgba(228, 196, 138, 0.06);
+    border: 1px solid var(--line);
+    font-size: 14.5px;
+    line-height: 1.55;
+    color: var(--cream);
+  }
+  .original {
+    margin-top: 10px;
+    color: var(--muted);
+    font-size: 15.5px;
+  }
+  .tag {
+    display: inline-block;
+    margin-right: 4px;
+    padding: 0 6px;
+    border-radius: 6px;
+    background: rgba(228, 196, 138, 0.14);
+    color: var(--gold-2);
+    font-style: normal;
+  }
+  .done {
+    padding: 14px 16px;
+    border-radius: 12px;
+    background: rgba(183, 231, 212, 0.08);
+    border: 1px solid rgba(183, 231, 212, 0.28);
+  }
+  .done h4 { color: var(--mint); }
+  .prep {
+    padding: 14px 16px;
+    border-radius: 12px;
+    background: rgba(185, 220, 255, 0.06);
+    border: 1px solid rgba(185, 220, 255, 0.22);
+  }
+  .prep h4 { color: var(--ice); }
+  .jump { font-size: 14.5px; }
+  .empty { color: var(--muted); padding: 24px; }
+
+  .score-top {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 22px;
+    align-items: center;
+    margin-top: 22px;
+  }
+  .total {
+    font-family: var(--display);
+    font-size: 84px;
+    line-height: 0.9;
+    color: var(--gold-2);
+    letter-spacing: -0.04em;
+  }
+  .total small { display: block; margin-top: 8px; font-size: 14px; letter-spacing: 0.14em; color: var(--gold); }
+  .bar { display: flex; height: 14px; border-radius: 999px; overflow: hidden; background: #222; }
+  .bar i:nth-child(1) { flex: 25; background: #e4c48a; }
+  .bar i:nth-child(2) { flex: 25; background: #f0b09a; }
+  .bar i:nth-child(3) { flex: 20; background: #b9dcff; }
+  .bar i:nth-child(4) { flex: 20; background: #b7e7d4; }
+  .bar i:nth-child(5) { flex: 10; background: #d9d3ea; }
+  .scores { display: grid; gap: 10px; margin-top: 16px; }
+  .score-item { display: grid; grid-template-columns: 72px 1fr; gap: 8px; padding: 14px 16px; }
+  .score-item b { font-family: var(--display); font-size: 28px; color: var(--gold); line-height: 1; }
+  .score-item strong { display: block; font-size: 17px; }
+  .score-item p { margin: 4px 0 0; color: var(--muted); }
+  .deliver { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0; }
+  .deliver span {
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: var(--card-2);
+    border: 1px solid var(--line);
+    font-size: 14px;
+  }
+
+  .mat-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    margin-top: 28px;
+  }
+  .mat {
+    display: flex;
+    flex-direction: column;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    overflow: hidden;
+    min-width: 0;
+  }
+  .mat .shotbox {
+    background: #f6f2e9;
+    aspect-ratio: 1;
+    display: grid;
+  }
+  .mat.portrait .shotbox { aspect-ratio: 9 / 14; }
+  .mat.wide .shotbox { aspect-ratio: 3 / 2; }
+  .mat img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  .mat .body {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 14px 14px 16px;
+    flex: 1;
+  }
+  .mat .code {
+    font-family: var(--display);
+    color: var(--gold);
+    letter-spacing: 0.12em;
+    font-size: 12px;
+  }
+  .mat h3 { margin: 0; font-size: 18px; font-weight: 650; line-height: 1.35; }
+  .mat .who { margin: 0; color: var(--gold-2); font-size: 13.5px; }
+  .mat p { margin: 0; color: var(--muted); font-size: 14.5px; line-height: 1.65; }
+  .mat .actions { display: flex; gap: 8px; margin-top: 10px; }
+  .mat .actions a {
+    flex: 1;
+    min-height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    text-decoration: none;
+    font-size: 14px;
+    border: 1px solid var(--line-strong);
+    color: var(--cream);
+  }
+  .mat .actions a.primary {
+    background: var(--gold);
+    color: #1a140c;
+    border-color: var(--gold);
+    font-weight: 650;
+  }
+  .mat.wait { background: transparent; border-style: dashed; }
+  .mat.wide { grid-column: span 2; }
+
+  footer {
+    border-top: 1px solid var(--line);
+    padding: 28px 0 48px;
+    color: var(--label);
+    font-size: 14px;
+  }
+  footer p { margin: 0; max-width: 50rem; }
+
+  @media (max-width: 1680px) {
+    .hero-mark { display: none; }
+  }
+  @media (min-width: 1400px) {
+    body::before, body::after {
+      content: "";
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      width: 22px;
+      z-index: 35;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 50% 18px, rgba(228, 196, 138, 0.55) 3px, transparent 4px) 0 0 / 22px 32px;
+      opacity: 0.55;
+    }
+    body::before { left: 14px; }
+    body::after { right: 14px; }
+  }
+  @media (max-width: 980px) {
+    .hero-inner, .steps, .workspace, .score-top, .specgrid { grid-template-columns: 1fr; }
+    .mat-grid { grid-template-columns: 1fr 1fr; }
+    .hero-mark { display: none; }
+    .navmeta { display: none; }
+    .glist { position: static; max-height: none; grid-template-columns: 1fr 1fr; }
+    .stats { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 640px) {
+    main { width: min(100% - 28px, 1180px); }
+    .hero { padding: 36px 16px 32px; }
+    .frame { inset: 10px; }
+    .glist, .mat-grid { grid-template-columns: 1fr; }
+    .mat.wide { grid-column: auto; }
+    .rule, .q { grid-template-columns: 48px 1fr; }
+    h1 { font-size: 36px; }
+    .topnav { padding: 0 12px; gap: 8px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .rec, .brief { animation: none; }
+  }
+  @media print {
+    .topnav, .toolbar, .glist, .hero-actions, .frame { display: none !important; }
+    body { background: #fff; color: #111; }
+    .hero { margin: 0; min-height: 0; background: #fff; }
+    .brief, .card, .rule, .step, .q, .note, .score-item { break-inside: avoid; border-color: #ccc; background: #fff; }
+    a { color: #111; }
+  }
+</style>
+</head>
+<body>
+<header class="topnav">
+  <a class="brand" href="#top"><b>JOINSPARK</b><span>101</span></a>
+  <nav class="navlinks" aria-label="页内目录">
+    <a href="#howto">怎么用</a>
+    <a href="#principles">原则</a>
+    <a href="#rules">统一要求</a>
+    <a href="#story">故事检查</a>
+    <a href="#materials">素材</a>
+    <a href="#groups">19组</a>
+    <a href="#score">评分</a>
+    <a href="#run">执行</a>
+  </nav>
+  <div class="navmeta">9:16 · 15s · 100</div>
+</header>
+
+<section class="hero" id="top">
+  <div class="hero-mark" aria-hidden="true">19</div>
+  <div class="frame" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+  <div class="hero-inner">
+    <div>
+      <p class="kicker"><i class="rec" aria-hidden="true"></i> AI VIDEO DIRECTOR 101 · WORKSHOP</p>
+      <h1>19组实战任务书</h1>
+      <p class="hero-sub">统一执行版 · 15秒成片与模型统一</p>
+      <p class="hero-lead">每组有指定主题，每人独立完成一张海报和一条15秒视频。组内可以共用产品与品牌素材，故事、角色、场景、构图和镜头由个人设计。</p>
+      <div class="hero-actions">
+        <a class="btn primary" href="#groups">进入我的组</a>
+        <a class="btn" href="#rules">先看全场硬性要求</a>
+      </div>
+      <div class="stats">
+        <div class="stat"><b>19</b><span>组指定主题</span></div>
+        <div class="stat"><b>1+1</b><span>海报 + 15秒视频</span></div>
+        <div class="stat"><b>4</b><span>分镜起，3种景别</span></div>
+        <div class="stat"><b>100</b><span>按个人作品</span></div>
+      </div>
+    </div>
+    <aside class="slate" aria-label="全场规格">
+      <div class="slate-top"><span>CALL SHEET</span><span>SCENE 19</span></div>
+      <h2>全场同一套规格</h2>
+      <dl>
+        <div><dt>海报</dt><dd>1张 · 9:16 · chatgpt2.0<br />建议 1080×1920</dd></div>
+        <div><dt>视频</dt><dd>1条 · 15秒 · 9:16<br />seedance 2.5 · 720p · 720×1280</dd></div>
+        <div><dt>镜头</dt><dd>至少4个分镜，3种景别，2种机位，1次有效运镜</dd></div>
+        <div><dt>交付</dt><dd>海报、视频、提示词，加一句修改说明</dd></div>
+      </dl>
+    </aside>
+  </div>
+  <div class="lineup-wrap">
+    <p class="lineup-label">19 个指定主题 · 点开阅读该组全文</p>
+    <div class="lineup" id="lineup"></div>
+  </div>
+</section>
+
+<main>
+  <section id="howto">
+    <p class="sec-label">00 / 阅读方式</p>
+    <h2 class="sec">先看这三步</h2>
+    <p class="sec-intro">这一页只放做作品要用的内容。先对规格，再读自己的组。</p>
+    <div class="steps">
+      <article class="step">
+        <em>01</em>
+        <h3>对齐全场规格</h3>
+        <p>海报、视频、模型和时长全场统一。先读「统一要求」里的海报 6 条和视频 12 条，再开始写故事。</p>
+      </article>
+      <article class="step">
+        <em>02</em>
+        <h3>只深读自己的组</h3>
+        <p>在「19组」点开组名。打开后是该组必须讲清的全部内容：任务、海报、视频、人物、领取和完成判断。包装、界面和场景图在「素材」下载。</p>
+      </article>
+      <article class="step">
+        <em>03</em>
+        <h3>交片前做两道自检</h3>
+        <p>用五问检查故事是否还在，用一百分的五个维度检查完成度。海报和视频缺一，不进入完整作品评选。</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="principles">
+    <p class="sec-label">01 / 任务原则</p>
+    <h2 class="sec">规定必须讲清什么</h2>
+    <p class="sec-intro">不指定第一镜全景、第二镜中景。人物可以是 1 人、2 人或 3 人。</p>
+    <p class="origin">任务书原文</p>
+    <div class="principle-grid">
+      <article class="card">
+        <div class="idx">原则 01</div>
+        <p>每组有指定主题，每人独立完成一张海报和一条15秒视频。组内可以共用产品与品牌素材，个人自行设计故事、角色、场景、构图和镜头。</p>
+      </article>
+      <article class="card">
+        <div class="idx">原则 02</div>
+        <p>规定“必须讲清什么”，不指定第一镜头必须全景、第二镜头必须中景。人物可以1人、2人或3人，按故事需要决定。不同作品不能只换名字共用同一成片。</p>
+      </article>
+      <article class="card">
+        <div class="idx">原则 03</div>
+        <p>产品不仅指实物。公司服务、岗位、法务提醒、软件功能和旅游目的地，都可以是要讲的核心内容。所有组都必须有人物与核心内容的关系和互动。</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="rules">
+    <p class="sec-label">02 / 统一硬性要求</p>
+    <h2 class="sec">海报 6 条，视频 12 条</h2>
+    <p class="sec-intro">19 组使用同一套制作标准。模型名称按本次培训平台的选项执行。下面每条都是原文，小标题只为方便扫读。</p>
+    <p class="origin">任务书原文</p>
+
+    <div class="rule-block" id="rule-poster">
+      <h3>海报</h3>
+      <p class="hint">每人 1 张。准确文字、Logo、包装和 UI 可以后期排版或合成。</p>
+      <div class="rules">
+        <article class="rule"><div class="no">01</div><div><div class="name">规格与模型</div><p>每人1张9:16海报，统一使用chatgpt2.0模型生成，成品建议1080×1920。准确文字、Logo、包装和UI可以后期排版或合成。模型名称按本次培训平台的选项执行。</p></div></article>
+        <article class="rule"><div class="no">02</div><div><div class="name">人物、场景、主体</div><p>至少1名人物、明确场景与指定主题主体。构图、人物数量、拍摄范围自由。</p></div></article>
+        <article class="rule"><div class="no">03</div><div><div class="name">必须发生关联</div><p>人物至少通过一个动作、视线或情境与主体关联。不能只站在旁边、贴一个Logo。</p></div></article>
+        <article class="rule"><div class="no">04</div><div><div class="name">标题、信息、行动</div><p>有一个主标题、清楚名称、至少2个不重复的有效信息点和一个行动引导。信息点可以是实际服务、使用情境、功能、内容或正确做法，不强求参数。</p></div></article>
+        <article class="rule"><div class="no">05</div><div><div class="name">三类主题的附加项</div><p>公司宣传额外需要至少2项主要服务与1项有依据的亮点；法务需要1个知识点与至少2个明确做法；软件和App需要真实界面及实际功能／内容识别。</p></div></article>
+        <article class="rule"><div class="no">06</div><div><div class="name">阅读顺序</div><p>人物、主体、标题有清楚阅读顺序；包装、Logo、UI和准确文字可以后期合成。</p></div></article>
+      </div>
+    </div>
+
+    <div class="rule-block" id="rule-video">
+      <h3>视频</h3>
+      <p class="hint">每人 1 条 15 秒。可以分镜后剪辑，也可以一次生成多镜头。总时长必须是 15 秒。</p>
+      <div class="rules">
+        <article class="rule"><div class="no">01</div><div><div class="name">规格与模型</div><p>每人1条15秒成片，统一使用seedance 2.5模型、720p画质生成，9:16竖屏，成片分辨率720×1280。模型名称按本次培训平台的选项执行。可以分镜生成后剪辑，也可以一次生成多镜头；最终成片总时长为15秒。</p></div></article>
+        <article class="rule"><div class="no">02</div><div><div class="name">分镜与时间轴</div><p>至少4个分镜，建议4—5个，至少3次清楚切镜。每个分镜写出连续时间区间，总和必须为15秒。时间轴不能重叠或留空；对白、动作和信息阅读都计入这15秒。</p></div></article>
+        <article class="rule"><div class="no">03</div><div><div class="name">三种景别</div><p>至少3种不同景别，从远景、全景、中景、近景、特写中自行选择。不规定出场顺序；需要让观众看清环境／人物关系、人物动作／情绪、核心产品／信息。主体占画面比例应有可辨变化，不能把同一画面轻微缩放算成三种景别。</p></div></article>
+        <article class="rule"><div class="no">04</div><div><div class="name">两种机位</div><p>至少2种机位角度，从平视、俯拍、仰拍中自行选择；各至少1个镜头，目的可以是表现平等交流、突出主体或交代桌面操作。不同角度下，人物、空间和产品关系仍要合理。</p></div></article>
+        <article class="rule"><div class="no">05</div><div><div class="name">一次有效运镜</div><p>至少1次有表达目的的推、拉、摇或移。在提示词中写清相机怎么动、关注什么，以及为什么这样动，例如引导注意、揭示信息或突出反应。其他镜头可以固定，不按运镜数量加分；只在剪辑软件放大一张海报不能代替相机运镜。</p></div></article>
+        <article class="rule"><div class="no">06</div><div><div class="name">动作与关键互动</div><p>至少2个分镜包含可见人物动作；其中至少1次人物与产品／服务／知识内容的关键互动，能看懂动作前的状态、人物做了什么和随后的变化。软件与App必须让正式界面参与互动；非实物主题可通过查看、讨论、确认、展示或执行正确做法完成互动。</p></div></article>
+        <article class="rule"><div class="no">07</div><div><div class="name">核心内容至少 3 秒</div><p>核心产品、软件界面、服务成果或知识信息清楚展示累计至少3秒。其中至少1个镜头专门让观众看清核心内容，可与特写镜头、结尾镜头重合。App／软件至少1次真实界面特写；其他组展示相应产品细节、服务成果、岗位任务、法务提醒或目的地特点。</p></div></article>
+        <article class="rule"><div class="no">08</div><div><div class="name">文字稳定至少 2 秒</div><p>需要阅读的核心文案／界面信息至少连续稳定停留2秒，可与上述3秒及结尾重合。人物说话、动作和界面展示允许在同一镜头同时发生，不把所有指标另算成独立时段。</p></div></article>
+        <article class="rule"><div class="no">09</div><div><div class="name">对白、字幕、正反打</div><p>至少1句简短对白或配音，并配可读字幕；不要求精确口型同步。多人需要写清谁说、谁听、谁回应。如果设计了两个人面对面交流的情节，至少使用1组正反打（至少2个相互对应的镜头），也可使用越肩正反打；单人或无面对面交流的故事不强制。</p></div></article>
+        <article class="rule"><div class="no">10</div><div><div class="name">故事完整，结尾有引导</div><p>故事至少包含具体需求／问题／误会／期待、人物行动、产品／服务／知识点发挥作用、可见结果或反转。结尾要有品牌／主题名称和行动引导（如了解、体验、咨询、购买、投递或查看提醒）。不限定故事各阶段的秒数。</p></div></article>
+        <article class="rule"><div class="no">11</div><div><div class="name">表情要写具体</div><p>人物至少有1次可辨的表情、视线、停顿或呼吸变化，与剧情原因对应。提示词写可见动作，例如“看完消息后眉头舒展、肩膀放松”，不能只写“开心”“紧张”。</p></div></article>
+        <article class="rule"><div class="no">12</div><div><div class="name">人物与产品连续</div><p>人物身份、服装、产品型号、空间、视线与物品归属保持连续；不靠人物换脸和产品变形制造反转。多人交流时保持左右位置与视线对应。</p></div></article>
+      </div>
+    </div>
+
+    <div class="free" id="rule-free">
+      <h3>自由发挥范围</h3>
+      <p>风格、角色人数、人物关系、具体场景、台词、每个镜头的景别和运镜自由设计。故事可以搞笑、温暖、有悬念或真实体验，不强制所有广告搞笑。</p>
+      <p>允许分镜生成、剪辑、使用正式截图和静态产品图制作信息展示镜头，但不能整条视频只做海报缩放轮播。人物互动镜头需要有可见动作。</p>
+    </div>
+  </section>
+
+  <section id="story">
+    <p class="sec-label">03 / 故事检查</p>
+    <h2 class="sec">所有人都能用的五问</h2>
+    <p class="sec-intro">这不是五镜头模板。写完一行故事后，用这五问看因果还在不在。</p>
+    <p class="origin">任务书原文</p>
+    <div class="questions">
+      <article class="q"><b>01</b><p>谁想做什么？为什么需要这个产品／服务／知识？</p></article>
+      <article class="q"><b>02</b><p>人物做了什么，谁怎样回应？</p></article>
+      <article class="q"><b>03</b><p>核心内容在故事里起到了什么作用？</p></article>
+      <article class="q"><b>04</b><p>最后发生了什么变化？</p></article>
+      <article class="q"><b>05</b><p>观众记住什么、下一步做什么？</p></article>
+    </div>
+    <div class="note">
+      <p>不是要求按五句话机械拍五镜头，而是检查故事是否完整。若删掉产品或知识点后故事完全不变，需要重新建立关联。</p>
+    </div>
+  </section>
+
+  <section id="materials">
+    <p class="sec-label">04 / 组内共用素材</p>
+    <h2 class="sec">下载这一组要用的图</h2>
+    <p class="sec-intro">同一产品、同一界面、同一车和同一地点的组，下载同一张，不要各自换型。</p>
+    <div class="note">
+      <p>M05–M14 是教学样品。包装上没有真实品牌；贷款页的金额和期限只是界面选项，不是获批利率。公司 Logo、JoinSpark、JoinMC 要用现有原图，这一页不提供生成版。</p>
+    </div>
+    <div class="mat-grid">
+      <article class="mat wait">
+        <div class="body">
+          <span class="code">M01</span>
+          <h3>久其数字传播 Logo</h3>
+          <p class="who">职能1、职能2，职能3可选用</p>
+          <p>使用现有官方 Logo。原图清楚就直接用，不另做一套字标。</p>
+        </div>
+      </article>
+      <article class="mat wait">
+        <div class="body">
+          <span class="code">M02</span>
+          <h3>PandaMobo Logo</h3>
+          <p class="who">职能4</p>
+          <p>使用现有招聘主体 Logo。原图没有的图形和副标题不要补。</p>
+        </div>
+      </article>
+      <article class="mat wait">
+        <div class="body">
+          <span class="code">M03</span>
+          <h3>JoinSpark 真实界面</h3>
+          <p class="who">职能5</p>
+          <p>上传一张实际产品截图。能登录就自己截，不要用生成界面代替真实功能。</p>
+        </div>
+      </article>
+      <article class="mat wait">
+        <div class="body">
+          <span class="code">M04</span>
+          <h3>JoinMC 真实界面</h3>
+          <p class="who">职能6</p>
+          <p>上传一张实际产品截图。页面上有什么功能，就讲什么功能。</p>
+        </div>
+      </article>
+      <article class="mat">
+        <a class="shotbox" href="materials/m05-yogurt.png" target="_blank" rel="noopener"><img src="materials/m05-yogurt.png" alt="原味酸奶白底包装，无品牌" /></a>
+        <div class="body">
+          <span class="code">M05</span>
+          <h3>酸奶包装</h3>
+          <p class="who">国内品牌1</p>
+          <p>无品牌教学样品。标签只有「原味酸奶 / PLAIN YOGURT」。不要加功效和配方。</p>
+          <div class="actions"><a class="primary" href="materials/m05-yogurt.png" download>下载</a><a href="materials/m05-yogurt.png" target="_blank" rel="noopener">查看</a></div>
+        </div>
+      </article>
+      <article class="mat">
+        <a class="shotbox" href="materials/m06-tea.png" target="_blank" rel="noopener"><img src="materials/m06-tea.png" alt="乌龙茶白底包装，无品牌" /></a>
+        <div class="body">
+          <span class="code">M06</span>
+          <h3>乌龙茶包装</h3>
+          <p class="who">国内品牌2</p>
+          <p>无品牌教学样品。标签只有「乌龙茶 / OOLONG TEA」。</p>
+          <div class="actions"><a class="primary" href="materials/m06-tea.png" download>下载</a><a href="materials/m06-tea.png" target="_blank" rel="noopener">查看</a></div>
+        </div>
+      </article>
+      <article class="mat">
+        <a class="shotbox" href="materials/m07-nuts.png" target="_blank" rel="noopener"><img src="materials/m07-nuts.png" alt="每日坚果白底包装，无品牌" /></a>
+        <div class="body">
+          <span class="code">M07</span>
+          <h3>坚果包装</h3>
+          <p class="who">国内品牌3</p>
+          <p>无品牌教学样品。包装只写「每日坚果 / MIXED NUTS」。</p>
+          <div class="actions"><a class="primary" href="materials/m07-nuts.png" download>下载</a><a href="materials/m07-nuts.png" target="_blank" rel="noopener">查看</a></div>
+        </div>
+      </article>
+      <article class="mat">
+        <a class="shotbox" href="materials/m08-powerbank.png" target="_blank" rel="noopener"><img src="materials/m08-powerbank.png" alt="无品牌超薄充电宝，侧面有 USB-C 和四点指示灯" /></a>
+        <div class="body">
+          <span class="code">M08</span>
+          <h3>超薄充电宝</h3>
+          <p class="who">互联网1</p>
+          <p>无品牌。表面只有 POWER BANK。不要补容量、瓦数或充电速度。</p>
+          <div class="actions"><a class="primary" href="materials/m08-powerbank.png" download>下载</a><a href="materials/m08-powerbank.png" target="_blank" rel="noopener">查看</a></div>
+        </div>
+      </article>
+      <article class="mat">
+        <a class="shotbox" href="materials/m09-stand.png" target="_blank" rel="noopener"><img src="materials/m09-stand.png" alt="无品牌展开状态桌面手机支架，不含手机" /></a>
+        <div class="body">
+          <span class="code">M09</span>
+          <h3>桌面手机支架</h3>
+          <p class="who">互联网2</p>
+          <p>无品牌，展开状态，图上不放手机。拍片时手机要落在承托上。</p>
+          <div class="actions"><a class="primary" href="materials/m09-stand.png" download>下载</a><a href="materials/m09-stand.png" target="_blank" rel="noopener">查看</a></div>
+        </div>
+      </article>
+      <article class="mat portrait">
+        <a class="shotbox" href="materials/m10-loan-ui.png" target="_blank" rel="noopener"><img src="materials/m10-loan-ui.png" alt="Luma Demo 英语贷款界面，没有具体利率" /></a>
+        <div class="body">
+          <span class="code">M10</span>
+          <h3>贷款 App · Luma Demo</h3>
+          <p class="who">互联网3、互联网4 共用</p>
+          <p>英语教学界面。$1,000 和 12 months 只是选项，不是获批结果。不要补具体利率。</p>
+          <div class="actions"><a class="primary" href="materials/m10-loan-ui.png" download>下载</a><a href="materials/m10-loan-ui.png" target="_blank" rel="noopener">查看</a></div>
+        </div>
+      </article>
+      <article class="mat portrait">
+        <a class="shotbox" href="materials/m11-novel-ui.png" target="_blank" rel="noopener"><img src="materials/m11-novel-ui.png" alt="StoryNest Demo 英文小说阅读页" /></a>
+        <div class="body">
+          <span class="code">M11</span>
+          <h3>小说阅读页 · StoryNest Demo</h3>
+          <p class="who">互联网5、互联网6 共用</p>
+          <p>英语阅读界面。书名 The Last Invitation。两组用同一张。</p>
+          <div class="actions"><a class="primary" href="materials/m11-novel-ui.png" download>下载</a><a href="materials/m11-novel-ui.png" target="_blank" rel="noopener">查看</a></div>
+        </div>
+      </article>
+      <article class="mat wide">
+        <a class="shotbox" href="materials/m12-car.png" target="_blank" rel="noopener"><img src="materials/m12-car.png" alt="培训指定新能源汽车侧前方" /></a>
+        <div class="body">
+          <span class="code">M12</span>
+          <h3>新能源汽车</h3>
+          <p class="who">海外品牌1、海外品牌2 共用</p>
+          <p>珍珠银纯电跨界车，完整侧前方。无 Logo、无参数。两组用同一辆。</p>
+          <div class="actions"><a class="primary" href="materials/m12-car.png" download>下载</a><a href="materials/m12-car.png" target="_blank" rel="noopener">查看</a></div>
+        </div>
+      </article>
+      <article class="mat wide">
+        <a class="shotbox" href="materials/m13-old-town.png" target="_blank" rel="noopener"><img src="materials/m13-old-town.png" alt="虚构葡萄牙风格海边旧城，石拱门在中景偏左" /></a>
+        <div class="body">
+          <span class="code">M13</span>
+          <h3>海边旧城</h3>
+          <p class="who">海外品牌3</p>
+          <p>虚构葡萄牙风格旧城，石拱门是空间锚点。不要加地名、票价或路线。</p>
+          <div class="actions"><a class="primary" href="materials/m13-old-town.png" download>下载</a><a href="materials/m13-old-town.png" target="_blank" rel="noopener">查看</a></div>
+        </div>
+      </article>
+      <article class="mat wide">
+        <a class="shotbox" href="materials/m14-coast.png" target="_blank" rel="noopener"><img src="materials/m14-coast.png" alt="虚构地中海海湾，前景步道，远端白色灯塔" /></a>
+        <div class="body">
+          <span class="code">M14</span>
+          <h3>滨海海湾</h3>
+          <p class="who">海外品牌4</p>
+          <p>虚构地中海海湾。前景是步道，远端有一座白色灯塔。不要加地名和价格。</p>
+          <div class="actions"><a class="primary" href="materials/m14-coast.png" download>下载</a><a href="materials/m14-coast.png" target="_blank" rel="noopener">查看</a></div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="groups">
+    <p class="sec-label">05 / 19组具体任务</p>
+    <h2 class="sec">点开一组，读完这一组</h2>
+    <p class="sec-intro">每组都有：任务、海报必须讲清、视频必须讲清、人物怎样参与、开始前领取、完成判断，以及全场统一的制作规格。</p>
+    <div class="toolbar">
+      <div class="filters" role="group" aria-label="按类别筛选">
+        <button class="chip" type="button" data-cat="all" aria-pressed="true">全部 19</button>
+        <button class="chip" type="button" data-cat="func" aria-pressed="false">职能 6</button>
+        <button class="chip" type="button" data-cat="cn" aria-pressed="false">国内品牌 3</button>
+        <button class="chip" type="button" data-cat="net" aria-pressed="false">互联网 6</button>
+        <button class="chip" type="button" data-cat="os" aria-pressed="false">海外品牌 4</button>
+      </div>
+      <input class="search" id="q" type="search" placeholder="搜索组名、产品或要求" aria-label="搜索任务" />
+      <button class="mode" id="modeBtn" type="button">展开全部 19 组</button>
+    </div>
+    <p class="count" id="count"></p>
+    <div class="workspace" id="workspace">
+      <div class="glist" id="glist" role="listbox" aria-label="19组"></div>
+      <div class="gstage" id="gstage"></div>
+    </div>
+  </section>
+
+  <section id="score">
+    <p class="sec-label">06 / 评分</p>
+    <h2 class="sec">100 分，按个人作品</h2>
+    <p class="sec-intro">角色多、特效多、模型贵，不自动加分。海报和视频都要交。</p>
+    <p class="origin">任务书原文</p>
+    <div class="score-top">
+      <div class="total">100<small>POINTS</small></div>
+      <div>
+        <div class="bar" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+        <div class="scores">
+          <article class="score-item"><b>25</b><div><strong>核心内容表达</strong><p>公司服务／产品功能／法律提醒准确清楚，信息达到本组要求，CTA明确</p></div></article>
+          <article class="score-item"><b>25</b><div><strong>故事与互动</strong><p>因果、人物动机、关键互动、核心内容发挥作用、结果或反转</p></div></article>
+          <article class="score-item"><b>20</b><div><strong>教学知识应用</strong><p>分镜与时间安排、景别选择、运镜目的、人物表演和视线、空间连续</p></div></article>
+          <article class="score-item"><b>20</b><div><strong>海报与视频呈现</strong><p>构图、阅读顺序、产品准确、界面文字、声音字幕、整体完成度</p></div></article>
+          <article class="score-item"><b>10</b><div><strong>提示词与交付</strong><p>参考图分工、可执行动作、一次有依据的修改、规格和文件完整</p></div></article>
+        </div>
+      </div>
+    </div>
+    <div class="note">
+      <p>海报与视频缺一须补齐后参与完整作品评选。角色多、特效多、模型贵不自动加分。</p>
+    </div>
+    <h3 style="margin:28px 0 0;font-size:22px;">你要交什么</h3>
+    <div class="deliver">
+      <span>海报</span><span>视频</span><span>用过的提示词</span><span>一句：发现了什么问题、怎样修改</span>
+    </div>
+    <p style="max-width:48rem;margin:0;">交海报、视频、用过的提示词，以及一句“发现了什么问题、怎样修改”。不需要写长篇创意报告。</p>
+  </section>
+
+  <section id="run">
+    <p class="sec-label">07 / 执行说明</p>
+    <h2 class="sec">先写一行故事，再排镜头</h2>
+    <p class="origin">任务书原文</p>
+    <div class="principle-grid">
+      <article class="card"><div class="idx">同一主题</div><p>海报和视频应属于同一品牌与主题，人物和产品设定应能对应；不强制把海报当视频首帧。</p></article>
+      <article class="card"><div class="idx">写作顺序</div><p>每个人先写一行故事，再排时间与镜头，再写参考图和人物动作。每镜头的景别、机位、运镜由学员决定。</p></article>
+      <article class="card"><div class="idx">合成与试拍</div><p>准确UI、Logo和文字可以合成。初次测试优先一个关键动作，必要时通过切镜完成递接、连接与信息变化。信息镜头可以用正式截图或静态产品图，不必每个都重新生成视频。</p></article>
+    </div>
+  </section>
+
+  <footer>
+    <p>JoinSpark AI 视频导演 101 Workshop · 参与者任务书。素材发放、现场控时和评审办法不在这一页。</p>
+  </footer>
+</main>
+
+<script>
+const SHARED = "每人1张海报＋1条15秒视频。海报使用chatgpt2.0；视频使用seedance 2.5、720p、9:16（720×1280）。视频至少4个分镜、3种景别、2种机位角度、1次有效运镜；至少2个分镜有人物动作、1次关键互动、1次核心内容清楚展示，核心内容累计清楚露出至少3秒，关键文字连续稳定至少2秒。至少1句对白／配音及字幕。App／软件须有真实界面特写；两人面对面交流须有1组正反打。故事与具体镜头自由设计，遵守统一要求。";
+
+const GROUPS = [
+  {
+    id: "f1", no: "01", cat: "职能", catKey: "func", tone: "#e4c48a",
+    group: "职能1组", brand: "久其数字传播", title: "让客户知道我们能做什么",
+    heading: "职能1组｜久其数字传播：让客户知道我们能做什么",
+    task: "做一套面向潜在客户的公司宣传素材，讲清主要服务和公司亮点。",
+    poster: [
+      "准确出现久其数字传播名称与Logo。",
+      "至少展示2项真实主要服务；例如从广告创意、媒介投放、品牌运营等已确认服务中选，最终按现有介绍确认。",
+      "至少表达1项有依据的公司亮点，不能只写“专业、领先”等空话。",
+      "人物与客户需求、广告方案、创意成果或服务内容存在明确关系；画面能看出服务如何帮助客户。",
+      "主标题和了解／咨询入口清楚。"
+    ],
+    video: [
+      "有一个具体客户需求、困惑或目标。",
+      "人物通过沟通、方案或成果展示，使至少1项公司服务发挥作用，不能只在Logo前挥手。",
+      "另1项服务可以在作品、画面标注或结尾信息中清楚出现。",
+      "有可见结果或需求得到回应的变化，最后给出公司识别和咨询引导。"
+    ],
+    people: "客户与服务人员沟通，人物查看／修改方案、展示作品或确认传播安排均可；选择有内容的行动，不只是介绍公司名字。",
+    prep: "【必需】久其现有 Logo 1张。原图清楚就直接使用，不要换一套生成字标。【文字】现有公司介绍复制3—5行，含主要服务和可使用亮点。与职能2组共用。",
+    done: "陌生人看完能说出公司至少两项服务，并理解其中一项服务与客户需求的关系。"
+  },
+  {
+    id: "f2", no: "02", cat: "职能", catKey: "func", tone: "#e4c48a",
+    group: "职能2组", brand: "久其数字传播", title: "品牌出海，有人一起想办法",
+    heading: "职能2组｜久其数字传播：品牌出海，有人一起想办法",
+    task: "做一套公司宣传素材，围绕一个品牌拓展海外市场的需求展示服务。",
+    poster: [
+      "公司名称、Logo准确。",
+      "至少2项与该需求有关的真实服务，例如素材创意、海外媒体投放、品牌运营，按公司资料选择。",
+      "1项有依据的服务亮点，配一个人物与品牌出海相关的场景。",
+      "人物与产品方案、海外表达、广告内容或服务成果互动。",
+      "咨询或了解入口清楚。"
+    ],
+    video: [
+      "品牌方遇到一个具体问题，例如不知道素材怎样表达，或多个营销事项需要协调；选一件讲，不罗列所有困难。",
+      "人物借助真实服务内容推动事情，不通过喊口号直接跳到成功。",
+      "展示可见的方案／创意／工作安排结果；不编造订单、销量、ROI或客户业绩。",
+      "收尾让观众认出久其数字传播，并理解服务对象和下一步行动。"
+    ],
+    people: "可用客户与服务团队对话、对照表达方案或确认工作内容来呈现。具体故事、场景和镜头自行设计。",
+    prep: "【必需】与职能1组共用久其现有 Logo。【文字】共用同一段公司业务介绍。",
+    done: "能看出“品牌有什么需求、公司提供什么帮助”，并看到两项真实服务和一项亮点。"
+  },
+  {
+    id: "f3", no: "03", cat: "职能", catKey: "func", tone: "#e4c48a",
+    group: "职能3组", brand: "法务提醒", title: "这张素材，能直接放广告里吗？",
+    heading: "职能3组｜法务提醒：这张素材，能直接放广告里吗？",
+    task: "把一个常见的素材使用提醒做成海报和故事视频，让非法律同事也能马上看懂。",
+    poster: [
+      "一个清楚的问题或提醒标题。",
+      "由法务组确认的1个日常知识点，围绕图片／字体／音乐等素材使用权限选一项，不同时讲整套法律知识。",
+      "至少2个简短可执行动作，例如先确认用途、核对授权范围、保留记录或询问法务；以本组确认内容为准。",
+      "人物与素材、待发布广告、授权记录或提醒卡发生互动。",
+      "结尾明确正确做法和内部咨询方向。"
+    ],
+    video: [
+      "人物准备做一件具体事，观众能看懂哪里存在疑问。",
+      "一个提醒、发现或沟通让人物意识到需要确认。",
+      "人物执行正确动作，得到可理解的处理结果；不只弹出一页法规。",
+      "最后用一句话收束提醒，不强制背法条或夸大处罚。"
+    ],
+    people: "人物准备使用某个素材，经查看、询问或核对后调整做法。提醒内容由本组法务自己确认。",
+    prep: "【无须专门图片】纸张、电脑、教学用广告图可自行生成；【文字】本组法务确定知识点和正确做法。可选用久其现有 Logo。不要使用真实客户文件。",
+    done: "普通同事看完能说出“这件事要先确认什么，下一步找谁／做什么”。"
+  },
+  {
+    id: "f4", no: "04", cat: "职能", catKey: "func", tone: "#e4c48a",
+    group: "职能4组", brand: "PandaMobo招聘", title: "这个岗位，正在找你",
+    heading: "职能4组｜PandaMobo招聘：这个岗位，正在找你",
+    task: "做一套有吸引力的招聘素材，展示岗位、实际工作和投递方法。",
+    poster: [
+      "招聘主体和Logo准确。",
+      "至少1个真实岗位名称。",
+      "至少1项实际工作内容或提供的岗位亮点。",
+      "人物与该工作的工具、任务、作品或团队产生互动，不只是指着空椅子。",
+      "真实投递或联系入口。"
+    ],
+    video: [
+      "人物有一个与求职、工作选择或找到合适搭档有关的具体动机。",
+      "剧情中看到该岗位实际在做什么，或人物为什么适合／感兴趣。",
+      "通过一次沟通、任务或作品展示推动故事。",
+      "结尾清楚出现岗位、主体和投递方式；不自编薪资、福利或录用承诺。"
+    ],
+    people: "人物与岗位任务、作品、招聘信息或未来同事交流均可。故事可以轻松、有反差，也可以真实温暖。",
+    prep: "【必需】PandaMobo 或实际招聘主体的现有 Logo 1张。原图没有的图形不要补上。【文字】岗位名称、1项职责／亮点、投递方式。使用现场给的现成信息，不要自编。",
+    done: "观众知道招什么岗位、工作与自己有什么关系、怎样投递。"
+  },
+  {
+    id: "f5", no: "05", cat: "职能", catKey: "func", tone: "#e4c48a",
+    group: "职能5组", brand: "JoinSpark", title: "把广告想法做出来",
+    heading: "职能5组｜JoinSpark：把广告想法做出来",
+    task: "宣传公司的JoinSpark产品，通过一个创作需求展示一项真实功能。",
+    poster: [
+      "JoinSpark名称及真实产品界面。",
+      "至少1项本次页面支持的真实功能，例如广告图片、视频或文案创作，选一项作为重点。",
+      "人物与输入内容、产品界面或创作成果形成关系。",
+      "至少1个成果或示意结果，让人理解功能能用于什么工作。",
+      "一个明确了解／体验CTA，不编免费额度和效果承诺。"
+    ],
+    video: [
+      "先让人理解人物想做什么广告内容或遇到什么创作问题。",
+      "通过人物输入、选择、查看或调整，表现JoinSpark参与创作。",
+      "出现可辨的成果，并让人物展示、使用或评价它，形成前后联系。",
+      "清楚露出产品名称、界面和核心功能；不能仅把笔记本电脑当产品。"
+    ],
+    people: "人物操作或查看JoinSpark，并与输出结果互动。可使用本人本次生成的海报或片段作为成果，不要求额外找案例。",
+    prep: "【必需】JoinSpark 真实界面截图 1 张。能登录就自己截。不要用生成界面代替，产品功能以实际页面为准。",
+    done: "观众能说出JoinSpark这次展示的是哪项能力，以及人物拿它完成了什么。"
+  },
+  {
+    id: "f6", no: "06", cat: "职能", catKey: "func", tone: "#e4c48a",
+    group: "职能6组", brand: "JoinMC", title: "让海外营销工作更有条理",
+    heading: "职能6组｜JoinMC：让海外营销工作更有条理",
+    task: "宣传公司的JoinMC产品，用一个真实工作场景展示它的作用。",
+    poster: [
+      "JoinMC名称及真实产品界面。",
+      "从本次截图能确认的实际功能中选1项，例如内容排期、跨平台数据查看或其他已确认模块。",
+      "用人物与工作信息、界面或处理结果的关系说明用途。",
+      "至少1项具体工作价值，用场景表达，不编效率倍数、营收或自动回复效果。",
+      "清楚的了解／体验CTA。"
+    ],
+    video: [
+      "人物面临一个可理解的工作需要，例如要安排内容，或需要看清不同账号的信息。",
+      "通过人物查看、筛选、安排或确认，表现实际功能怎样参与。",
+      "出现清楚的处理结果或工作状态变化，能与前面的需要对应。",
+      "产品界面和JoinMC名称清楚露出，避免变成泛泛的“AI机器人很厉害”。"
+    ],
+    people: "围绕提供截图里的一个真实功能写故事，不要求同时展示所有模块；不确定操作路径时，用查看、确认和结果展示，不编新页面。",
+    prep: "【必需】JoinMC 真实界面截图 1 张。有账号就自己截，页面上有什么功能就讲什么。【文字】这张截图对应功能的一句话。",
+    done: "观众理解人物原来需要处理什么、JoinMC这项功能帮助做了什么。"
+  },
+  {
+    id: "c1", no: "07", cat: "国内品牌", catKey: "cn", tone: "#f0b09a",
+    group: "国内品牌1组", brand: "酸奶", title: "早餐里的一个小选择",
+    heading: "国内品牌1组｜酸奶：早餐里的一个小选择",
+    task: "为指定酸奶做产品海报和有故事的宣传视频。",
+    poster: [
+      "品牌与产品名、清楚的包装正面。",
+      "一个与早餐／食用场景有关的主信息，以及另1个来自资料或画面的支持信息。",
+      "人物与产品有明确动作或选择关系，场景与主题相关。",
+      "购买或了解CTA。"
+    ],
+    video: [
+      "人物有一个具体早餐需要或轻微情境。",
+      "通过选择、拿取、分享或品尝，让酸奶真正进入情节。",
+      "有可见回应或结果，最后清楚展示产品与行动引导。",
+      "不强制入口表演，不虚构营养、健康和成分卖点。"
+    ],
+    people: "拿取、选择、分享、展示或自然品尝任选；不能只让人物站在旁边、产品贴在角落。",
+    prep: "【必需】酸奶白底图 1 张，下载本页「素材」M05。无品牌，标签为原味酸奶。不要加功效或配方。【文字】有已批准卖点可复制一句。",
+    done: "产品与人物早餐选择有关，包装准确，故事和CTA完整。"
+  },
+  {
+    id: "c2", no: "08", cat: "国内品牌", catKey: "cn", tone: "#f0b09a",
+    group: "国内品牌2组", brand: "茶饮", title: "午后这一口，谁先想到？",
+    heading: "国内品牌2组｜茶饮：午后这一口，谁先想到？",
+    task: "为指定茶饮做产品海报和有情节的宣传视频。",
+    poster: [
+      "产品名、品牌和瓶身包装清楚。",
+      "围绕实际茶饮与休息场景的主信息，配1个有依据的支持信息。",
+      "人物与茶饮的动作关系明确，可有同伴互动。",
+      "清楚CTA。"
+    ],
+    video: [
+      "设计一个午后、休息或分享的具体情境。",
+      "人物因情境作出选择，茶饮参与互动或回应。",
+      "表情和动作有原因，故事有落点，产品得到清楚展示。",
+      "不强制喝水，不虚构提神、零糖或健康功效。"
+    ],
+    people: "展示、递出、选择、轻举或饮用均可，按产品参考与故事安排。",
+    prep: "【必需】乌龙茶白底图 1 张，下载本页「素材」M06。标签只有乌龙茶，不要加功效。【文字】已有批准卖点。",
+    done: "茶饮不是背景道具，观众能理解人物为什么在这个情境选择它。"
+  },
+  {
+    id: "c3", no: "09", cat: "国内品牌", catKey: "cn", tone: "#f0b09a",
+    group: "国内品牌3组", brand: "坚果", title: "分享之后，发生了什么？",
+    heading: "国内品牌3组｜坚果：分享之后，发生了什么？",
+    task: "为指定坚果做分享主题海报和故事视频。",
+    poster: [
+      "产品与包装清楚，品牌名可辨。",
+      "分享场景中的人物关系，以及真实的产品信息。",
+      "一条主标题和行动引导。"
+    ],
+    video: [
+      "出现一个让分享发生的具体原因或小误会。",
+      "人物拿取、递出、选择或回应，坚果推动情节。",
+      "结果与前面的情境有关，不仅是重复举袋和微笑。",
+      "结尾清楚展示产品，不要求拆包或复杂多人抢夺。"
+    ],
+    people: "人物之间通过产品产生一次明确关系；可用切镜完成递接，保持物品归属。",
+    prep: "【必需】坚果白底图 1 张，下载本页「素材」M07。包装只写每日坚果，不要加营养承诺。【文字】已有批准卖点。",
+    done: "看得到分享的原因、动作和回应，包装不换型。"
+  },
+  {
+    id: "n1", no: "10", cat: "互联网", catKey: "net", tone: "#b9dcff",
+    group: "互联网1组", brand: "海外电商充电宝", title: "需要电的时候，谁来解围？",
+    heading: "互联网1组｜海外电商充电宝：需要电的时候，谁来解围？",
+    task: "制作适合目标海外市场的充电宝海报和故事广告。",
+    poster: [
+      "产品外观、品牌／产品名和目标语言。",
+      "以实际用途或确认的便携、接口等特点为主信息，不能自编性能参数。",
+      "人物与充电宝、手机或使用情境发生关系。",
+      "购物或了解CTA。"
+    ],
+    video: [
+      "有明确的外出用电需要、误会或轻松反差。",
+      "充电宝通过人物动作进入故事，使用关系或产品特点被看清。",
+      "出现结果与回应，收尾保留产品和CTA。",
+      "连接可通过剪辑略过；不编快充时间、电量上涨速度和容量。"
+    ],
+    people: "取出、展示、递接、正确连接或查看连接状态均可；动作服务故事。",
+    prep: "【必需】充电宝白底图 1 张，下载本页「素材」M08。无品牌，不要补容量、瓦数或充电速度。【文字】目标语言与已有真实卖点。",
+    done: "产品解决故事中的需要，海外语言统一，接口与型号准确。"
+  },
+  {
+    id: "n2", no: "11", cat: "互联网", catKey: "net", tone: "#b9dcff",
+    group: "互联网2组", brand: "海外电商手机支架", title: "双手忙不过来的时候",
+    heading: "互联网2组｜海外电商手机支架：双手忙不过来的时候",
+    task: "为指定支架做能看出实际用途的海报和故事广告。",
+    poster: [
+      "支架、手机承托关系与产品识别清楚。",
+      "人物与桌面使用需要有关，主信息和支持信息有依据。",
+      "目标语言标题和购物CTA。"
+    ],
+    video: [
+      "人物有一个需要腾出双手、调整观看或整理桌面的具体情境。",
+      "人物使用支架后，行为或状态出现可理解变化。",
+      "至少一次明确操作或互动，产品结构与承托关系可见。",
+      "不要求复杂折叠组装，不编兼容型号、角度或承重。"
+    ],
+    people: "放置、查看、轻点屏幕、收回双手做其他事等均可，安排符合支架结构。",
+    prep: "【必需】展开状态的支架白底图 1 张，下载本页「素材」M09。参考图不放手机；成片里手机要落在承托上。【文字】目标语言与真实卖点。",
+    done: "人物需要和支架用途对应，手机不悬空，产品不变形。"
+  },
+  {
+    id: "n3", no: "12", cat: "互联网", catKey: "net", tone: "#b9dcff",
+    group: "互联网3组", brand: "海外贷款App", title: "这个利率，先看清楚",
+    heading: "互联网3组｜海外贷款App：这个利率，先看清楚",
+    task: "围绕获批低利率卖点做产品海报和故事广告。",
+    poster: [
+      "真实App名与正式界面。",
+      "客户确认的利率文案、对应口径、适用条件及必要费用说明。",
+      "成年人物与查看报价的关系。",
+      "当地语言与真实详情／申请入口CTA。"
+    ],
+    video: [
+      "人物有查看借款方案或了解费用的正常需要。",
+      "通过查看与操作，让获批利率卖点和正式界面进入故事。",
+      "人物理解信息后作出一个可见回应或下一步选择，不直接表现为必然获批。",
+      "正确呈现利率与条件，不编币种、数值、到账速度或审批承诺。"
+    ],
+    people: "人物查看、轻触、核对或向同伴展示正式报价，需让观众看清所讲信息。",
+    prep: "【必需】贷款 App 页面 1 张，与互联网4共用，下载本页「素材」M10，教学名 Luma Demo。图上的 $1,000 和 12 months 只是选项，不要写成获批利率。【文字】现场批准的利率与条件。",
+    done: "卖点有吸引力且依据明确，App可辨，查看信息与贷款结果不混淆。"
+  },
+  {
+    id: "n4", no: "13", cat: "互联网", catKey: "net", tone: "#b9dcff",
+    group: "互联网4组", brand: "海外贷款App", title: "选方案，别只看一个数字",
+    heading: "互联网4组｜海外贷款App：选方案，别只看一个数字",
+    task: "用另一种故事表达同一贷款App的真实报价与费用信息。",
+    poster: [
+      "App身份与正式页面。",
+      "获批利率主信息，配实际资料中的期限／费用／还款信息之一；若资料没有，不自行补。",
+      "成年人物与方案信息互动。",
+      "当地语言和清楚CTA。"
+    ],
+    video: [
+      "人物对一个方案信息有疑问、误解或需要了解。",
+      "通过实际页面的查看、说明或核对推动理解，保留真实低利率卖点。",
+      "有一个清楚的认知或选择变化，结尾引导查看正式详情。",
+      "不编竞品利率，不把低分期金额直接解释为低总成本。"
+    ],
+    people: "可由一个人核对，也可由两人交流；信息载体真实可读，不能只有“很划算”的表情。",
+    prep: "【必需】与互联网3共用贷款 App 页面，本页「素材」M10。【文字】沿用同一份现场批准资料，不要自编利率。",
+    done: "有故事和实际信息依据，利率、周期与费用不矛盾。"
+  },
+  {
+    id: "n5", no: "14", cat: "互联网", catKey: "net", tone: "#b9dcff",
+    group: "互联网5组", brand: "海外小说App", title: "本来只想读一会儿",
+    heading: "互联网5组｜海外小说App：本来只想读一会儿",
+    task: "宣传小说App的真实阅读体验，小说内容作为吸引点。",
+    poster: [
+      "小说App名称、正式阅读界面。",
+      "人物与阅读的关系，主信息围绕实际内容或使用体验。",
+      "目标语言标题、App识别与安装／了解CTA。",
+      "不能只出现单本书封或玄幻人物。"
+    ],
+    video: [
+      "人物有一个具体阅读动机或日常情境。",
+      "通过看屏幕、轻滑、停顿或与同伴回应，表现被内容吸引。",
+      "正式阅读页与App名清楚出现，情绪发生在阅读之后。",
+      "故事有结果或回收，不编免费、书库规模、更新速度或离线功能。"
+    ],
+    people: "人物阅读、轻滑、向别人展示或回应内容均可；界面是故事中的信息来源。",
+    prep: "【必需】小说 App 阅读页 1 张，与互联网6共用，下载本页「素材」M11。App 名 StoryNest Demo，英语界面。【文字】目标语言。",
+    done: "观众记住这是阅读App，人物反应与页面内容可对应。"
+  },
+  {
+    id: "n6", no: "15", cat: "互联网", catKey: "net", tone: "#b9dcff",
+    group: "互联网6组", brand: "海外小说App", title: "看到这一段，你会怎么反应？",
+    heading: "互联网6组｜海外小说App：看到这一段，你会怎么反应？",
+    task: "用内容悬念或人物反差宣传同一小说App。",
+    poster: [
+      "App名与正式阅读页面。",
+      "人物反应与实际内容有关系，主标题可制造悬念但不能编产品权益。",
+      "目标语言和阅读／安装CTA。"
+    ],
+    video: [
+      "设计一个由阅读内容引发的悬念、误会、反差或期待。",
+      "人物通过阅读和一个具体动作推动情节。",
+      "故事有可理解的回应或结果，清楚露出App页面。",
+      "不是无App界面的影视预告，也不要求表演长段小说情节。"
+    ],
+    people: "一个人反应或多人误会均可，人数由创意决定；内容与界面对应。",
+    prep: "【必需】与互联网5共用阅读页，本页「素材」M11。App 名 StoryNest Demo。【文字】目标语言。",
+    done: "悬念服务App内容展示，人物与阅读页面确有互动。"
+  },
+  {
+    id: "o1", no: "16", cat: "海外品牌", catKey: "os", tone: "#b7e7d4",
+    group: "海外品牌1组", brand: "新能源汽车", title: "今天谁才是主角？",
+    heading: "海外品牌1组｜新能源汽车：今天谁才是主角？",
+    task: "用人物关系或轻松反差宣传车型外观。",
+    poster: [
+      "完整车型或足以辨认车型的构图，品牌／车型名。",
+      "人物与汽车有具体关系，产品是视觉主体。",
+      "一个来自参考或资料的展示点，目标语言和CTA。"
+    ],
+    video: [
+      "人物有一个与汽车有关的动机、误会或展示需要。",
+      "至少一次人与汽车的明确互动，关系与接触合理。",
+      "通过镜头选择展示真实外观，故事有结果或反转。",
+      "不编自动驾驶、充电速度、价格或其他未提供性能。"
+    ],
+    people: "轻触、展示、围绕车辆的拍照或人物视线均可；不强制开门、驾驶和复杂车灯动作。",
+    prep: "【必需】同一车型完整侧前方图片1张，与海外品牌2共用，下载本页「素材」M12。【文字】车型名、目标语言与已有真实卖点。",
+    done: "笑点与车型相关，观众能看清车，型号与比例连续。"
+  },
+  {
+    id: "o2", no: "17", cat: "海外品牌", catKey: "os", tone: "#b7e7d4",
+    group: "海外品牌2组", brand: "新能源汽车", title: "一个周末出发的小故事",
+    heading: "海外品牌2组｜新能源汽车：一个周末出发的小故事",
+    task: "围绕周末生活场景宣传同一车型。",
+    poster: [
+      "人物、汽车与周末场景有关联。",
+      "车身识别、车型名和一个实际展示点清楚。",
+      "目标语言标题与了解／试驾CTA。"
+    ],
+    video: [
+      "人物有一个周末出行、约见或准备出发的具体动机。",
+      "汽车参与人物行动或关系，不能只是贴图背景。",
+      "出现可理解的结果与情绪变化，同时完成车型展示。",
+      "不虚构储物容量、续航和越野能力，不强制移动车辆。"
+    ],
+    people: "人物与车身、车门、同伴或随身物品互动均可。动作自行设计，保持产品结构合理。",
+    prep: "【必需】与海外品牌1共用汽车图片，本页「素材」M12。【文字】车型名、目标语言和真实卖点。",
+    done: "生活故事完整，车的作用明确，产品没有被风景淹没。"
+  },
+  {
+    id: "o3", no: "18", cat: "海外品牌", catKey: "os", tone: "#b7e7d4",
+    group: "海外品牌3组", brand: "古城旅行", title: "为什么想去这里？",
+    heading: "海外品牌3组｜古城旅行：为什么想去这里？",
+    task: "用人物体验故事吸引目标游客了解指定古城／街区。",
+    poster: [
+      "指定地点名和可辨地标。",
+      "人物与地点、同行者或当地体验发生关系。",
+      "一个来自参考的真实吸引点、目标语言与CTA。"
+    ],
+    video: [
+      "人物有一个旅行期待、误会、发现或小目标。",
+      "人物在地点中的行动让当地特点被看见。",
+      "出现一个体验结果或故事回收，结尾引导了解目的地。",
+      "不编路线、票价、开放时间和历史事实；不必提供路线卡。"
+    ],
+    people: "欣赏、寻找、拍照、与同行者交流等均可；要使地标或体验推动情节。",
+    prep: "【必需】海边旧城参考照片 1 张，下载本页「素材」M13。虚构地点，石拱门是锚点。不要加地名、票价或路线。【文字】目标语言。",
+    done: "故事离不开这个目的地，地标与参考对应，观众知道想去哪里。"
+  },
+  {
+    id: "o4", no: "19", cat: "海外品牌", catKey: "os", tone: "#b7e7d4",
+    group: "海外品牌4组", brand: "滨海旅行", title: "去海边之后，发生了什么？",
+    heading: "海外品牌4组｜滨海旅行：去海边之后，发生了什么？",
+    task: "用海边人物故事宣传指定滨海目的地。",
+    poster: [
+      "指定目的地名称与可辨海岸景观。",
+      "人物、环境与一个旅行体验的关系。",
+      "主标题、目标语言与了解／预订CTA，预订仅在有真实入口时使用。"
+    ],
+    video: [
+      "人物带着一个期待或日常情绪来到海边。",
+      "通过看海、同行互动、寻找景观或其他安全行动推进情节。",
+      "目的地带来可见体验或回应，结尾收回地点与CTA。",
+      "不只做景观推拉，不编服务、价格和准确日落时刻。"
+    ],
+    people: "人物与海岸、步道、同行者或拍摄行为形成关系，创意和镜头自由。",
+    prep: "【必需】滨海参考照片 1 张，下载本页「素材」M14。前景步道，远端白色灯塔。不要加地名或价格。【文字】目标语言。",
+    done: "人物故事与海岸体验相连，目的地可辨，信息真实。"
+  }
+];
+
+const SPECS = [
+  "海报 1 张 · chatgpt2.0 · 9:16 · 建议 1080×1920",
+  "视频 1 条 · 15 秒 · seedance 2.5 · 720p · 720×1280",
+  "至少 4 个分镜，建议 4—5 个，至少 3 次切镜",
+  "至少 3 种景别，至少 2 种机位，至少 1 次有效运镜",
+  "至少 2 个分镜有人物动作，其中 1 次关键互动",
+  "核心内容累计清楚露出至少 3 秒，关键文字连续稳定至少 2 秒",
+  "至少 1 句对白／配音，并配可读字幕",
+  "App／软件须有真实界面特写；两人面对面交流须有 1 组正反打"
+];
+
+let cat = "all";
+let mode = "focus";
+let active = "f1";
+
+const lineup = document.getElementById("lineup");
+const glist = document.getElementById("glist");
+const gstage = document.getElementById("gstage");
+const workspace = document.getElementById("workspace");
+const countEl = document.getElementById("count");
+const modeBtn = document.getElementById("modeBtn");
+const qEl = document.getElementById("q");
+
+function escapeHtml(s) {
+  return s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+}
+function rich(s) {
+  return escapeHtml(s).replace(/【([^】]+)】/g, '<span class="tag">【$1】</span>');
+}
+function filtered() {
+  const query = qEl.value.trim().toLowerCase();
+  return GROUPS.filter((g) => {
+    if (cat !== "all" && g.catKey !== cat) return false;
+    if (!query) return true;
+    return [g.heading, g.title, g.task, g.people, g.prep, g.done, g.brand, g.group, ...g.poster, ...g.video]
+      .join("\n").toLowerCase().includes(query);
+  });
+}
+function article(g) {
+  const lis = (arr) => arr.map((x) => `<li>${rich(x)}</li>`).join("");
+  return `<article class="brief" id="g-${g.id}" style="--tone:${g.tone}" data-cat="${g.catKey}">
+    <div class="pillrow"><span class="pill">${escapeHtml(g.group)}</span><span class="pill">${escapeHtml(g.cat)}</span></div>
+    <h3>${escapeHtml(g.heading)}</h3>
+    <div class="block"><h4>任务</h4><p>${rich(g.task)}</p></div>
+    <div class="block"><h4>海报必须讲清</h4><ul>${lis(g.poster)}</ul></div>
+    <div class="block"><h4>视频必须讲清</h4><ul>${lis(g.video)}</ul></div>
+    <div class="block"><h4>人物怎样参与</h4><p>${rich(g.people)}</p></div>
+    <div class="block prep"><h4>开始前领取</h4><p>${rich(g.prep)}</p></div>
+    <div class="block done"><h4>完成判断</h4><p>${rich(g.done)}</p></div>
+    <div class="block"><h4>制作与镜头要求 · 全场统一，本组同样遵守</h4>
+      <div class="specgrid">${SPECS.map((s) => `<span>${escapeHtml(s)}</span>`).join("")}</div>
+      <p class="original"><strong style="color:#f3ddb0">原文。</strong>${escapeHtml(SHARED)}</p>
+      <p class="jump"><a href="#rules">分镜、景别、运镜、表演和连续性的完整条文在「统一硬性要求」。</a></p>
+    </div>
+  </article>`;
+}
+function renderList(items) {
+  if (!items.length) {
+    glist.innerHTML = "";
+    return;
+  }
+  glist.innerHTML = items.map((g) => `
+    <button class="gbtn" type="button" role="option" data-id="${g.id}" aria-selected="${g.id === active ? "true" : "false"}" style="--tone:${g.tone}">
+      <span class="num">${g.no}</span>
+      <span><span class="t">${escapeHtml(g.title)}</span><span class="s">${escapeHtml(g.group)} · ${escapeHtml(g.brand)}</span></span>
+    </button>`).join("");
+}
+function resetFilters() {
+  cat = "all";
+  qEl.value = "";
+  document.querySelectorAll(".chip").forEach((c) => c.setAttribute("aria-pressed", String(c.dataset.cat === "all")));
+}
+function openGroup(id) {
+  active = id;
+  mode = "focus";
+  resetFilters();
+  history.replaceState(null, "", "#g-" + id);
+  render();
+  requestAnimationFrame(() => {
+    document.getElementById("g-" + id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+}
+function renderLineup() {
+  lineup.innerHTML = GROUPS.map((g) => `
+    <button class="shot" type="button" data-id="${g.id}" style="--tone:${g.tone}">
+      <span class="no">${g.no} · ${escapeHtml(g.cat)}</span>
+      <span class="ttl">${escapeHtml(g.title)}</span>
+    </button>`).join("");
+}
+function render() {
+  const items = filtered();
+  if (!items.some((g) => g.id === active)) active = items[0] ? items[0].id : active;
+  countEl.textContent = items.length ? `当前显示 ${items.length} / 19 组` : "没有匹配的组。类别和搜索会一起生效。";
+  workspace.classList.toggle("all", mode === "all");
+  modeBtn.textContent = mode === "all" ? "回到一组阅读" : "展开全部 19 组";
+  renderList(items);
+  if (!items.length) {
+    gstage.innerHTML = `<p class="empty">没有匹配的组。类别和搜索会一起生效，先切回「全部」，或换一个词。</p>`;
+    return;
+  }
+  gstage.innerHTML = mode === "all" ? items.map(article).join("") : article(items.find((g) => g.id === active));
+}
+glist.addEventListener("click", (e) => {
+  const btn = e.target.closest(".gbtn");
+  if (!btn) return;
+  active = btn.dataset.id;
+  history.replaceState(null, "", "#g-" + active);
+  if (mode === "all") {
+    renderList(filtered());
+    document.getElementById("g-" + active)?.scrollIntoView({ behavior: "smooth", block: "start" });
+  } else {
+    render();
+  }
+});
+document.querySelectorAll(".chip").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    cat = btn.dataset.cat;
+    document.querySelectorAll(".chip").forEach((c) => c.setAttribute("aria-pressed", String(c === btn)));
+    render();
+  });
+});
+qEl.addEventListener("input", render);
+lineup.addEventListener("click", (e) => {
+  const btn = e.target.closest(".shot");
+  if (!btn) return;
+  openGroup(btn.dataset.id);
+});
+modeBtn.addEventListener("click", () => {
+  mode = mode === "all" ? "focus" : "all";
+  render();
+  if (mode === "focus") document.getElementById("groups").scrollIntoView({ behavior: "smooth", block: "start" });
+});
+
+const hash = location.hash.match(/^#g-(.+)$/);
+if (hash && GROUPS.some((g) => g.id === hash[1])) active = hash[1];
+renderLineup();
+render();
+
+const navLinks = [...document.querySelectorAll(".navlinks a")];
+const sections = navLinks.map((a) => document.querySelector(a.getAttribute("href"))).filter(Boolean);
+const spy = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (!entry.isIntersecting) return;
+    navLinks.forEach((a) => a.classList.toggle("active", a.getAttribute("href") === "#" + entry.target.id));
+  });
+}, { rootMargin: "-40% 0px -50% 0px", threshold: 0.01 });
+sections.forEach((s) => spy.observe(s));
+</script>
+</body>
+</html>
