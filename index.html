@@ -704,6 +704,31 @@
   }
   .mat.wait { background: transparent; border-style: dashed; }
   .mat.wide { grid-column: span 2; }
+  .sheet {
+    margin: 8px 0 0;
+    padding: 10px 12px;
+    border-radius: 12px;
+    background: #0d1016;
+    border: 1px solid var(--line);
+    color: var(--muted);
+    font-family: var(--sans);
+    font-size: 13.5px;
+    line-height: 1.65;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+  button.copy {
+    margin-top: 8px;
+    min-height: 36px;
+    padding: 0 14px;
+    border-radius: 999px;
+    border: 1px solid var(--line-strong);
+    background: transparent;
+    color: var(--gold-2);
+    cursor: pointer;
+    font-size: 13.5px;
+  }
+  button.copy.done { background: var(--gold); color: #1a140c; border-color: var(--gold); }
 
   footer {
     border-top: 1px solid var(--line);
@@ -928,7 +953,7 @@
     <h2 class="sec">下载这一组要用的图</h2>
     <p class="sec-intro">同一产品、同一界面、同一车和同一地点的组，下载同一张，不要各自换型。</p>
     <div class="note">
-      <p>M05–M14 是教学样品。包装上没有真实品牌；贷款页的金额和期限只是界面选项，不是获批利率。公司 Logo、JoinSpark、JoinMC 要用现有原图，这一页不提供生成版。</p>
+      <p>M05–M14 使用下面这些虚拟品牌。参考图是外形，名字不印在图上；品牌、简介和文案在卡片里，点「复制这段」即可。不要把教学界面上的金额写成获批利率，也不要自编容量、续航或票价。公司 Logo、JoinSpark、JoinMC 仍用现有原图。</p>
     </div>
     <div class="mat-grid">
       <article class="mat wait">
@@ -967,9 +992,11 @@
         <a class="shotbox" href="materials/m05-yogurt.png" target="_blank" rel="noopener"><img src="materials/m05-yogurt.png" alt="原味酸奶白底包装，无品牌" /></a>
         <div class="body">
           <span class="code">M05</span>
-          <h3>酸奶包装</h3>
-          <p class="who">国内品牌1</p>
-          <p>无品牌教学样品。标签只有「原味酸奶 / PLAIN YOGURT」。不要加功效和配方。</p>
+          <h3>晨牧 CHENMU</h3>
+          <p class="who">国内品牌1 · 原味酸奶</p>
+          <p>参考图是瓶身外形。品牌名用晨牧，不要加功效或配方。</p>
+          <pre class="sheet" data-kit="M05"></pre>
+          <button class="copy" type="button" data-copy="M05">复制这段</button>
           <div class="actions"><a class="primary" href="materials/m05-yogurt.png" download>下载</a><a href="materials/m05-yogurt.png" target="_blank" rel="noopener">查看</a></div>
         </div>
       </article>
@@ -977,9 +1004,11 @@
         <a class="shotbox" href="materials/m06-tea.png" target="_blank" rel="noopener"><img src="materials/m06-tea.png" alt="乌龙茶白底包装，无品牌" /></a>
         <div class="body">
           <span class="code">M06</span>
-          <h3>乌龙茶包装</h3>
-          <p class="who">国内品牌2</p>
-          <p>无品牌教学样品。标签只有「乌龙茶 / OOLONG TEA」。</p>
+          <h3>茶间 CHAJIAN</h3>
+          <p class="who">国内品牌2 · 乌龙茶</p>
+          <p>参考图是瓶身外形。品牌名用茶间，不要加功效。</p>
+          <pre class="sheet" data-kit="M06"></pre>
+          <button class="copy" type="button" data-copy="M06">复制这段</button>
           <div class="actions"><a class="primary" href="materials/m06-tea.png" download>下载</a><a href="materials/m06-tea.png" target="_blank" rel="noopener">查看</a></div>
         </div>
       </article>
@@ -987,9 +1016,11 @@
         <a class="shotbox" href="materials/m07-nuts.png" target="_blank" rel="noopener"><img src="materials/m07-nuts.png" alt="每日坚果白底包装，无品牌" /></a>
         <div class="body">
           <span class="code">M07</span>
-          <h3>坚果包装</h3>
-          <p class="who">国内品牌3</p>
-          <p>无品牌教学样品。包装只写「每日坚果 / MIXED NUTS」。</p>
+          <h3>果伴 GUOBAN</h3>
+          <p class="who">国内品牌3 · 每日坚果</p>
+          <p>参考图是袋型。品牌名用果伴，不要加营养承诺。</p>
+          <pre class="sheet" data-kit="M07"></pre>
+          <button class="copy" type="button" data-copy="M07">复制这段</button>
           <div class="actions"><a class="primary" href="materials/m07-nuts.png" download>下载</a><a href="materials/m07-nuts.png" target="_blank" rel="noopener">查看</a></div>
         </div>
       </article>
@@ -997,9 +1028,11 @@
         <a class="shotbox" href="materials/m08-powerbank.png" target="_blank" rel="noopener"><img src="materials/m08-powerbank.png" alt="无品牌超薄充电宝，侧面有 USB-C 和四点指示灯" /></a>
         <div class="body">
           <span class="code">M08</span>
-          <h3>超薄充电宝</h3>
-          <p class="who">互联网1</p>
-          <p>无品牌。表面只有 POWER BANK。不要补容量、瓦数或充电速度。</p>
+          <h3>PocketGo Slim</h3>
+          <p class="who">互联网1 · 便携充电宝</p>
+          <p>英语市场。不要补容量、瓦数或充电速度。</p>
+          <pre class="sheet" data-kit="M08"></pre>
+          <button class="copy" type="button" data-copy="M08">复制这段</button>
           <div class="actions"><a class="primary" href="materials/m08-powerbank.png" download>下载</a><a href="materials/m08-powerbank.png" target="_blank" rel="noopener">查看</a></div>
         </div>
       </article>
@@ -1007,9 +1040,11 @@
         <a class="shotbox" href="materials/m09-stand.png" target="_blank" rel="noopener"><img src="materials/m09-stand.png" alt="无品牌展开状态桌面手机支架，不含手机" /></a>
         <div class="body">
           <span class="code">M09</span>
-          <h3>桌面手机支架</h3>
-          <p class="who">互联网2</p>
-          <p>无品牌，展开状态，图上不放手机。拍片时手机要落在承托上。</p>
+          <h3>DeskMate Lift</h3>
+          <p class="who">互联网2 · 桌面手机支架</p>
+          <p>英语市场。参考图不放手机，成片里手机要落在承托上。</p>
+          <pre class="sheet" data-kit="M09"></pre>
+          <button class="copy" type="button" data-copy="M09">复制这段</button>
           <div class="actions"><a class="primary" href="materials/m09-stand.png" download>下载</a><a href="materials/m09-stand.png" target="_blank" rel="noopener">查看</a></div>
         </div>
       </article>
@@ -1017,9 +1052,11 @@
         <a class="shotbox" href="materials/m10-loan-ui.png" target="_blank" rel="noopener"><img src="materials/m10-loan-ui.png" alt="Luma Demo 英语贷款界面，没有具体利率" /></a>
         <div class="body">
           <span class="code">M10</span>
-          <h3>贷款 App · Luma Demo</h3>
+          <h3>LumaLoan</h3>
           <p class="who">互联网3、互联网4 共用</p>
-          <p>英语教学界面。$1,000 和 12 months 只是选项，不是获批结果。不要补具体利率。</p>
+          <p>英语教学界面。$1,000 和 12 months 只是选项，不要写成获批利率。</p>
+          <pre class="sheet" data-kit="M10"></pre>
+          <button class="copy" type="button" data-copy="M10">复制这段</button>
           <div class="actions"><a class="primary" href="materials/m10-loan-ui.png" download>下载</a><a href="materials/m10-loan-ui.png" target="_blank" rel="noopener">查看</a></div>
         </div>
       </article>
@@ -1027,9 +1064,11 @@
         <a class="shotbox" href="materials/m11-novel-ui.png" target="_blank" rel="noopener"><img src="materials/m11-novel-ui.png" alt="StoryNest Demo 英文小说阅读页" /></a>
         <div class="body">
           <span class="code">M11</span>
-          <h3>小说阅读页 · StoryNest Demo</h3>
+          <h3>StoryNest</h3>
           <p class="who">互联网5、互联网6 共用</p>
-          <p>英语阅读界面。书名 The Last Invitation。两组用同一张。</p>
+          <p>宣传主体是 StoryNest。《The Last Invitation》只是界面里的示例小说。</p>
+          <pre class="sheet" data-kit="M11"></pre>
+          <button class="copy" type="button" data-copy="M11">复制这段</button>
           <div class="actions"><a class="primary" href="materials/m11-novel-ui.png" download>下载</a><a href="materials/m11-novel-ui.png" target="_blank" rel="noopener">查看</a></div>
         </div>
       </article>
@@ -1037,9 +1076,11 @@
         <a class="shotbox" href="materials/m12-car.png" target="_blank" rel="noopener"><img src="materials/m12-car.png" alt="培训指定新能源汽车侧前方" /></a>
         <div class="body">
           <span class="code">M12</span>
-          <h3>新能源汽车</h3>
+          <h3>曜途 YOTRA E1</h3>
           <p class="who">海外品牌1、海外品牌2 共用</p>
-          <p>珍珠银纯电跨界车，完整侧前方。无 Logo、无参数。两组用同一辆。</p>
+          <p>同一辆珍珠银纯电跨界车。不要加续航、充电速度、价格或驾驶辅助。</p>
+          <pre class="sheet" data-kit="M12"></pre>
+          <button class="copy" type="button" data-copy="M12">复制这段</button>
           <div class="actions"><a class="primary" href="materials/m12-car.png" download>下载</a><a href="materials/m12-car.png" target="_blank" rel="noopener">查看</a></div>
         </div>
       </article>
@@ -1047,9 +1088,11 @@
         <a class="shotbox" href="materials/m13-old-town.png" target="_blank" rel="noopener"><img src="materials/m13-old-town.png" alt="虚构葡萄牙风格海边旧城，石拱门在中景偏左" /></a>
         <div class="body">
           <span class="code">M13</span>
-          <h3>海边旧城</h3>
+          <h3>澜湾古城 Lanora Old Town</h3>
           <p class="who">海外品牌3</p>
-          <p>虚构葡萄牙风格旧城，石拱门是空间锚点。不要加地名、票价或路线。</p>
+          <p>虚构地点。石拱门是空间锚点。不要加票价或路线。</p>
+          <pre class="sheet" data-kit="M13"></pre>
+          <button class="copy" type="button" data-copy="M13">复制这段</button>
           <div class="actions"><a class="primary" href="materials/m13-old-town.png" download>下载</a><a href="materials/m13-old-town.png" target="_blank" rel="noopener">查看</a></div>
         </div>
       </article>
@@ -1057,9 +1100,11 @@
         <a class="shotbox" href="materials/m14-coast.png" target="_blank" rel="noopener"><img src="materials/m14-coast.png" alt="虚构地中海海湾，前景步道，远端白色灯塔" /></a>
         <div class="body">
           <span class="code">M14</span>
-          <h3>滨海海湾</h3>
+          <h3>晴屿湾 Sunora Bay</h3>
           <p class="who">海外品牌4</p>
-          <p>虚构地中海海湾。前景是步道，远端有一座白色灯塔。不要加地名和价格。</p>
+          <p>虚构地中海海湾。前景是步道，远端有白色灯塔。不要加价格。</p>
+          <pre class="sheet" data-kit="M14"></pre>
+          <button class="copy" type="button" data-copy="M14">复制这段</button>
           <div class="actions"><a class="primary" href="materials/m14-coast.png" download>下载</a><a href="materials/m14-coast.png" target="_blank" rel="noopener">查看</a></div>
         </div>
       </article>
@@ -1270,8 +1315,9 @@ const GROUPS = [
   },
   {
     id: "c1", no: "07", cat: "国内品牌", catKey: "cn", tone: "#f0b09a",
-    group: "国内品牌1组", brand: "酸奶", title: "早餐里的一个小选择",
-    heading: "国内品牌1组｜酸奶：早餐里的一个小选择",
+    group: "国内品牌1组", brand: "晨牧 CHENMU", title: "早餐里的一个小选择",
+    heading: "国内品牌1组｜晨牧 CHENMU：早餐里的一个小选择",
+    kit: "M05",
     task: "为指定酸奶做产品海报和有故事的宣传视频。",
     poster: [
       "品牌与产品名、清楚的包装正面。",
@@ -1286,13 +1332,14 @@ const GROUPS = [
       "不强制入口表演，不虚构营养、健康和成分卖点。"
     ],
     people: "拿取、选择、分享、展示或自然品尝任选；不能只让人物站在旁边、产品贴在角落。",
-    prep: "【必需】酸奶白底图 1 张，下载本页「素材」M05。无品牌，标签为原味酸奶。不要加功效或配方。【文字】有已批准卖点可复制一句。",
+    prep: "【必需】酸奶白底图 1 张，下载本页「素材」M05。品牌用晨牧 CHENMU。不要加功效或配方。文案示例可直接复制。",
     done: "产品与人物早餐选择有关，包装准确，故事和CTA完整。"
   },
   {
     id: "c2", no: "08", cat: "国内品牌", catKey: "cn", tone: "#f0b09a",
-    group: "国内品牌2组", brand: "茶饮", title: "午后这一口，谁先想到？",
-    heading: "国内品牌2组｜茶饮：午后这一口，谁先想到？",
+    group: "国内品牌2组", brand: "茶间 CHAJIAN", title: "午后这一口，谁先想到？",
+    heading: "国内品牌2组｜茶间 CHAJIAN：午后这一口，谁先想到？",
+    kit: "M06",
     task: "为指定茶饮做产品海报和有情节的宣传视频。",
     poster: [
       "产品名、品牌和瓶身包装清楚。",
@@ -1307,13 +1354,14 @@ const GROUPS = [
       "不强制喝水，不虚构提神、零糖或健康功效。"
     ],
     people: "展示、递出、选择、轻举或饮用均可，按产品参考与故事安排。",
-    prep: "【必需】乌龙茶白底图 1 张，下载本页「素材」M06。标签只有乌龙茶，不要加功效。【文字】已有批准卖点。",
+    prep: "【必需】乌龙茶白底图 1 张，下载本页「素材」M06。品牌用茶间 CHAJIAN。不要加功效。文案示例可直接复制。",
     done: "茶饮不是背景道具，观众能理解人物为什么在这个情境选择它。"
   },
   {
     id: "c3", no: "09", cat: "国内品牌", catKey: "cn", tone: "#f0b09a",
-    group: "国内品牌3组", brand: "坚果", title: "分享之后，发生了什么？",
-    heading: "国内品牌3组｜坚果：分享之后，发生了什么？",
+    group: "国内品牌3组", brand: "果伴 GUOBAN", title: "分享之后，发生了什么？",
+    heading: "国内品牌3组｜果伴 GUOBAN：分享之后，发生了什么？",
+    kit: "M07",
     task: "为指定坚果做分享主题海报和故事视频。",
     poster: [
       "产品与包装清楚，品牌名可辨。",
@@ -1327,13 +1375,14 @@ const GROUPS = [
       "结尾清楚展示产品，不要求拆包或复杂多人抢夺。"
     ],
     people: "人物之间通过产品产生一次明确关系；可用切镜完成递接，保持物品归属。",
-    prep: "【必需】坚果白底图 1 张，下载本页「素材」M07。包装只写每日坚果，不要加营养承诺。【文字】已有批准卖点。",
+    prep: "【必需】坚果白底图 1 张，下载本页「素材」M07。品牌用果伴 GUOBAN。不要加营养承诺。文案示例可直接复制。",
     done: "看得到分享的原因、动作和回应，包装不换型。"
   },
   {
     id: "n1", no: "10", cat: "互联网", catKey: "net", tone: "#b9dcff",
-    group: "互联网1组", brand: "海外电商充电宝", title: "需要电的时候，谁来解围？",
-    heading: "互联网1组｜海外电商充电宝：需要电的时候，谁来解围？",
+    group: "互联网1组", brand: "PocketGo Slim", title: "需要电的时候，谁来解围？",
+    heading: "互联网1组｜PocketGo Slim：需要电的时候，谁来解围？",
+    kit: "M08",
     task: "制作适合目标海外市场的充电宝海报和故事广告。",
     poster: [
       "产品外观、品牌／产品名和目标语言。",
@@ -1348,13 +1397,14 @@ const GROUPS = [
       "连接可通过剪辑略过；不编快充时间、电量上涨速度和容量。"
     ],
     people: "取出、展示、递接、正确连接或查看连接状态均可；动作服务故事。",
-    prep: "【必需】充电宝白底图 1 张，下载本页「素材」M08。无品牌，不要补容量、瓦数或充电速度。【文字】目标语言与已有真实卖点。",
+    prep: "【必需】充电宝白底图 1 张，下载本页「素材」M08。品牌用 PocketGo Slim。不要补容量、瓦数或充电速度。英文文案可直接复制。",
     done: "产品解决故事中的需要，海外语言统一，接口与型号准确。"
   },
   {
     id: "n2", no: "11", cat: "互联网", catKey: "net", tone: "#b9dcff",
-    group: "互联网2组", brand: "海外电商手机支架", title: "双手忙不过来的时候",
-    heading: "互联网2组｜海外电商手机支架：双手忙不过来的时候",
+    group: "互联网2组", brand: "DeskMate Lift", title: "双手忙不过来的时候",
+    heading: "互联网2组｜DeskMate Lift：双手忙不过来的时候",
+    kit: "M09",
     task: "为指定支架做能看出实际用途的海报和故事广告。",
     poster: [
       "支架、手机承托关系与产品识别清楚。",
@@ -1368,13 +1418,14 @@ const GROUPS = [
       "不要求复杂折叠组装，不编兼容型号、角度或承重。"
     ],
     people: "放置、查看、轻点屏幕、收回双手做其他事等均可，安排符合支架结构。",
-    prep: "【必需】展开状态的支架白底图 1 张，下载本页「素材」M09。参考图不放手机；成片里手机要落在承托上。【文字】目标语言与真实卖点。",
+    prep: "【必需】展开状态的支架白底图 1 张，下载本页「素材」M09。品牌用 DeskMate Lift。参考图不放手机；成片里手机要落在承托上。英文文案可直接复制。",
     done: "人物需要和支架用途对应，手机不悬空，产品不变形。"
   },
   {
     id: "n3", no: "12", cat: "互联网", catKey: "net", tone: "#b9dcff",
-    group: "互联网3组", brand: "海外贷款App", title: "这个利率，先看清楚",
-    heading: "互联网3组｜海外贷款App：这个利率，先看清楚",
+    group: "互联网3组", brand: "LumaLoan", title: "这个利率，先看清楚",
+    heading: "互联网3组｜LumaLoan：这个利率，先看清楚",
+    kit: "M10",
     task: "围绕获批低利率卖点做产品海报和故事广告。",
     poster: [
       "真实App名与正式界面。",
@@ -1389,13 +1440,14 @@ const GROUPS = [
       "正确呈现利率与条件，不编币种、数值、到账速度或审批承诺。"
     ],
     people: "人物查看、轻触、核对或向同伴展示正式报价，需让观众看清所讲信息。",
-    prep: "【必需】贷款 App 页面 1 张，与互联网4共用，下载本页「素材」M10，教学名 Luma Demo。图上的 $1,000 和 12 months 只是选项，不要写成获批利率。【文字】现场批准的利率与条件。",
+    prep: "【必需】贷款 App 页面 1 张，与互联网4共用，下载本页「素材」M10。品牌用 LumaLoan。图上的 $1,000 和 12 months 只是选项，不要写成获批利率。具体利率、费用和条件用正式确认资料。",
     done: "卖点有吸引力且依据明确，App可辨，查看信息与贷款结果不混淆。"
   },
   {
     id: "n4", no: "13", cat: "互联网", catKey: "net", tone: "#b9dcff",
-    group: "互联网4组", brand: "海外贷款App", title: "选方案，别只看一个数字",
-    heading: "互联网4组｜海外贷款App：选方案，别只看一个数字",
+    group: "互联网4组", brand: "LumaLoan", title: "选方案，别只看一个数字",
+    heading: "互联网4组｜LumaLoan：选方案，别只看一个数字",
+    kit: "M10",
     task: "用另一种故事表达同一贷款App的真实报价与费用信息。",
     poster: [
       "App身份与正式页面。",
@@ -1410,13 +1462,14 @@ const GROUPS = [
       "不编竞品利率，不把低分期金额直接解释为低总成本。"
     ],
     people: "可由一个人核对，也可由两人交流；信息载体真实可读，不能只有“很划算”的表情。",
-    prep: "【必需】与互联网3共用贷款 App 页面，本页「素材」M10。【文字】沿用同一份现场批准资料，不要自编利率。",
+    prep: "【必需】与互联网3共用贷款 App 页面，本页「素材」M10。品牌用 LumaLoan。沿用同一份正式确认资料，不要自编利率。",
     done: "有故事和实际信息依据，利率、周期与费用不矛盾。"
   },
   {
     id: "n5", no: "14", cat: "互联网", catKey: "net", tone: "#b9dcff",
-    group: "互联网5组", brand: "海外小说App", title: "本来只想读一会儿",
-    heading: "互联网5组｜海外小说App：本来只想读一会儿",
+    group: "互联网5组", brand: "StoryNest", title: "本来只想读一会儿",
+    heading: "互联网5组｜StoryNest：本来只想读一会儿",
+    kit: "M11",
     task: "宣传小说App的真实阅读体验，小说内容作为吸引点。",
     poster: [
       "小说App名称、正式阅读界面。",
@@ -1431,13 +1484,14 @@ const GROUPS = [
       "故事有结果或回收，不编免费、书库规模、更新速度或离线功能。"
     ],
     people: "人物阅读、轻滑、向别人展示或回应内容均可；界面是故事中的信息来源。",
-    prep: "【必需】小说 App 阅读页 1 张，与互联网6共用，下载本页「素材」M11。App 名 StoryNest Demo，英语界面。【文字】目标语言。",
+    prep: "【必需】小说 App 阅读页 1 张，与互联网6共用，下载本页「素材」M11。宣传主体用 StoryNest。《The Last Invitation》只是界面里的示例小说。",
     done: "观众记住这是阅读App，人物反应与页面内容可对应。"
   },
   {
     id: "n6", no: "15", cat: "互联网", catKey: "net", tone: "#b9dcff",
-    group: "互联网6组", brand: "海外小说App", title: "看到这一段，你会怎么反应？",
-    heading: "互联网6组｜海外小说App：看到这一段，你会怎么反应？",
+    group: "互联网6组", brand: "StoryNest", title: "看到这一段，你会怎么反应？",
+    heading: "互联网6组｜StoryNest：看到这一段，你会怎么反应？",
+    kit: "M11",
     task: "用内容悬念或人物反差宣传同一小说App。",
     poster: [
       "App名与正式阅读页面。",
@@ -1451,13 +1505,14 @@ const GROUPS = [
       "不是无App界面的影视预告，也不要求表演长段小说情节。"
     ],
     people: "一个人反应或多人误会均可，人数由创意决定；内容与界面对应。",
-    prep: "【必需】与互联网5共用阅读页，本页「素材」M11。App 名 StoryNest Demo。【文字】目标语言。",
+    prep: "【必需】与互联网5共用阅读页，本页「素材」M11。宣传主体用 StoryNest。示例小说不是宣传主体。",
     done: "悬念服务App内容展示，人物与阅读页面确有互动。"
   },
   {
     id: "o1", no: "16", cat: "海外品牌", catKey: "os", tone: "#b7e7d4",
-    group: "海外品牌1组", brand: "新能源汽车", title: "今天谁才是主角？",
-    heading: "海外品牌1组｜新能源汽车：今天谁才是主角？",
+    group: "海外品牌1组", brand: "曜途 YOTRA E1", title: "今天谁才是主角？",
+    heading: "海外品牌1组｜曜途 YOTRA E1：今天谁才是主角？",
+    kit: "M12",
     task: "用人物关系或轻松反差宣传车型外观。",
     poster: [
       "完整车型或足以辨认车型的构图，品牌／车型名。",
@@ -1471,13 +1526,14 @@ const GROUPS = [
       "不编自动驾驶、充电速度、价格或其他未提供性能。"
     ],
     people: "轻触、展示、围绕车辆的拍照或人物视线均可；不强制开门、驾驶和复杂车灯动作。",
-    prep: "【必需】同一车型完整侧前方图片1张，与海外品牌2共用，下载本页「素材」M12。【文字】车型名、目标语言与已有真实卖点。",
+    prep: "【必需】同一车型完整侧前方图片1张，与海外品牌2共用，下载本页「素材」M12。车型名用曜途 YOTRA E1。不要加续航、充电速度、价格或驾驶辅助。",
     done: "笑点与车型相关，观众能看清车，型号与比例连续。"
   },
   {
     id: "o2", no: "17", cat: "海外品牌", catKey: "os", tone: "#b7e7d4",
-    group: "海外品牌2组", brand: "新能源汽车", title: "一个周末出发的小故事",
-    heading: "海外品牌2组｜新能源汽车：一个周末出发的小故事",
+    group: "海外品牌2组", brand: "曜途 YOTRA E1", title: "一个周末出发的小故事",
+    heading: "海外品牌2组｜曜途 YOTRA E1：一个周末出发的小故事",
+    kit: "M12",
     task: "围绕周末生活场景宣传同一车型。",
     poster: [
       "人物、汽车与周末场景有关联。",
@@ -1491,13 +1547,14 @@ const GROUPS = [
       "不虚构储物容量、续航和越野能力，不强制移动车辆。"
     ],
     people: "人物与车身、车门、同伴或随身物品互动均可。动作自行设计，保持产品结构合理。",
-    prep: "【必需】与海外品牌1共用汽车图片，本页「素材」M12。【文字】车型名、目标语言和真实卖点。",
+    prep: "【必需】与海外品牌1共用汽车图片，本页「素材」M12。车型名用曜途 YOTRA E1。不要自编续航、价格或驾驶辅助。",
     done: "生活故事完整，车的作用明确，产品没有被风景淹没。"
   },
   {
     id: "o3", no: "18", cat: "海外品牌", catKey: "os", tone: "#b7e7d4",
-    group: "海外品牌3组", brand: "古城旅行", title: "为什么想去这里？",
-    heading: "海外品牌3组｜古城旅行：为什么想去这里？",
+    group: "海外品牌3组", brand: "澜湾古城", title: "为什么想去这里？",
+    heading: "海外品牌3组｜澜湾古城 Lanora Old Town：为什么想去这里？",
+    kit: "M13",
     task: "用人物体验故事吸引目标游客了解指定古城／街区。",
     poster: [
       "指定地点名和可辨地标。",
@@ -1511,13 +1568,14 @@ const GROUPS = [
       "不编路线、票价、开放时间和历史事实；不必提供路线卡。"
     ],
     people: "欣赏、寻找、拍照、与同行者交流等均可；要使地标或体验推动情节。",
-    prep: "【必需】海边旧城参考照片 1 张，下载本页「素材」M13。虚构地点，石拱门是锚点。不要加地名、票价或路线。【文字】目标语言。",
+    prep: "【必需】海边旧城参考照片 1 张，下载本页「素材」M13。地点名用澜湾古城 Lanora Old Town。不要加票价或路线。",
     done: "故事离不开这个目的地，地标与参考对应，观众知道想去哪里。"
   },
   {
     id: "o4", no: "19", cat: "海外品牌", catKey: "os", tone: "#b7e7d4",
-    group: "海外品牌4组", brand: "滨海旅行", title: "去海边之后，发生了什么？",
-    heading: "海外品牌4组｜滨海旅行：去海边之后，发生了什么？",
+    group: "海外品牌4组", brand: "晴屿湾", title: "去海边之后，发生了什么？",
+    heading: "海外品牌4组｜晴屿湾 Sunora Bay：去海边之后，发生了什么？",
+    kit: "M14",
     task: "用海边人物故事宣传指定滨海目的地。",
     poster: [
       "指定目的地名称与可辨海岸景观。",
@@ -1531,7 +1589,7 @@ const GROUPS = [
       "不只做景观推拉，不编服务、价格和准确日落时刻。"
     ],
     people: "人物与海岸、步道、同行者或拍摄行为形成关系，创意和镜头自由。",
-    prep: "【必需】滨海参考照片 1 张，下载本页「素材」M14。前景步道，远端白色灯塔。不要加地名或价格。【文字】目标语言。",
+    prep: "【必需】滨海参考照片 1 张，下载本页「素材」M14。地点名用晴屿湾 Sunora Bay。不要加价格。",
     done: "人物故事与海岸体验相连，目的地可辨，信息真实。"
   }
 ];
@@ -1546,6 +1604,19 @@ const SPECS = [
   "至少 1 句对白／配音，并配可读字幕",
   "App／软件须有真实界面特写；两人面对面交流须有 1 组正反打"
 ];
+
+const KITS = {
+  M05: "晨牧 CHENMU\n原味酸奶\n是什么：单人份瓶装原味酸奶。\n简介：乳白色圆润瓶身，搭配奶白瓶盖与淡蓝标签，适合放进早餐、办公间歇或同伴分享的生活故事。\n表达重点：原味酸奶、单人份瓶装、早餐搭配。\n文案示例：早餐这一口，留给自己。",
+  M06: "茶间 CHAJIAN\n乌龙茶\n是什么：瓶装即饮乌龙茶。\n简介：透明瓶身呈现琥珀色茶汤，搭配深绿瓶盖与米白标签，适合午后休息、通勤途中和朋友相聚的场景。\n表达重点：乌龙茶品类、开瓶饮用、休息分享。\n文案示例：忙里有闲，茶间一刻。",
+  M07: "果伴 GUOBAN\n每日坚果\n是什么：自立拉链袋包装的混合坚果零食。\n简介：奶油白包装搭配暖棕文字，正面有小型透明观察窗，适合办公室分享、朋友聚会与出游携带。\n表达重点：混合坚果、拉链袋包装、分享情境。\n文案示例：好吃的，分你一份。",
+  M08: "PocketGo Slim\n便携充电宝\n是什么：面向英语市场的薄型便携充电宝。\n简介：采用石墨灰金属外壳、扁平圆角机身、USB-C接口与简洁电量指示灯，适合通勤、外出和旅行补电的故事。\n表达重点：薄型机身、随身携带、手机补电。\n英文文案：Power, ready to go.",
+  M09: "DeskMate Lift\n桌面手机支架\n是什么：面向英语市场的金属桌面手机支架。\n简介：银灰色支架配有宽底座、支撑臂、承托钩和防滑垫，用于桌面观看、视频通话或腾出双手处理其他事务。\n表达重点：承托手机、解放双手、桌面使用。\n英文文案：Your phone up. Your hands free.",
+  M10: "LumaLoan\n海外个人贷款App\n是什么：面向海外成年用户的个人贷款App教学产品。\n简介：采用英语界面与美元示例，展示贷款金额、期限和个性化利率查询，让人物通过查看方案、了解费用和选择下一步推动故事。\n表达重点：低利率方案定位、费用信息清楚、报价查询直观。\n英文文案：Explore your options. Know your costs.\n数值要求：具体利率、费用和申请条件使用正式确认资料；教学界面不编实际报价。",
+  M11: "StoryNest\n海外英文小说App\n是什么：面向英语阅读人群的小说App教学产品。\n简介：采用暖米白阅读背景、清晰英文正文和简洁章节工具，通过目录、阅读进度及下一章入口呈现阅读体验。\n表达重点：英文阅读、章节悬念、继续阅读。\n英文文案：One chapter. One more twist.\n说明：界面示例小说《The Last Invitation》只作为App里的内容示例，宣传主体始终是StoryNest。",
+  M12: "曜途 YOTRA E1\n纯电跨界车\n是什么：用于海外广告训练的纯电跨界概念车型。\n简介：珍珠银车身、黑色车顶、简洁前脸与细长前灯，围绕城市生活、人物拍照和周末出行展开故事。\n表达重点：纯电车型定位、车身外观、周末生活场景。\n英文文案：Make room for your weekend.\n参数要求：不自行添加续航、充电速度、价格或驾驶辅助能力。",
+  M13: "澜湾古城 Lanora Old Town\n是什么：虚构的葡萄牙风格海边旧城。\n简介：浅色建筑沿石板街道排列，带有蓝白瓷砖与标志性石拱门，巷子尽头露出海景。适合散步、拍照与意外发现的小故事。\n表达重点：古城街巷、石拱门、尽头海景。\n英文文案：A little turn. A new discovery.",
+  M14: "晴屿湾 Sunora Bay\n是什么：虚构的地中海风格滨海目的地。\n简介：拥有浅金沙滩、蓝绿色海水、平整滨海步道和远处白色灯塔，适合人物同行、看海与情绪变化的旅行故事。\n表达重点：蓝绿海湾、滨海步道、白色灯塔。\n英文文案：A slower moment by the sea."
+};
 
 let cat = "all";
 let mode = "focus";
@@ -1570,15 +1641,17 @@ function filtered() {
   return GROUPS.filter((g) => {
     if (cat !== "all" && g.catKey !== cat) return false;
     if (!query) return true;
-    return [g.heading, g.title, g.task, g.people, g.prep, g.done, g.brand, g.group, ...g.poster, ...g.video]
+    return [g.heading, g.title, g.task, g.people, g.prep, g.done, g.brand, g.group, g.kit ? KITS[g.kit] : "", ...g.poster, ...g.video]
       .join("\n").toLowerCase().includes(query);
   });
 }
 function article(g) {
   const lis = (arr) => arr.map((x) => `<li>${rich(x)}</li>`).join("");
+  const kit = g.kit ? `<div class="block"><h4>品牌资料</h4><pre class="sheet">${escapeHtml(KITS[g.kit])}</pre><button class="copy" type="button" data-copy="${g.kit}">复制这段</button></div>` : "";
   return `<article class="brief" id="g-${g.id}" style="--tone:${g.tone}" data-cat="${g.catKey}">
     <div class="pillrow"><span class="pill">${escapeHtml(g.group)}</span><span class="pill">${escapeHtml(g.cat)}</span></div>
     <h3>${escapeHtml(g.heading)}</h3>
+    ${kit}
     <div class="block"><h4>任务</h4><p>${rich(g.task)}</p></div>
     <div class="block"><h4>海报必须讲清</h4><ul>${lis(g.poster)}</ul></div>
     <div class="block"><h4>视频必须讲清</h4><ul>${lis(g.video)}</ul></div>
@@ -1667,6 +1740,33 @@ modeBtn.addEventListener("click", () => {
   mode = mode === "all" ? "focus" : "all";
   render();
   if (mode === "focus") document.getElementById("groups").scrollIntoView({ behavior: "smooth", block: "start" });
+});
+
+document.querySelectorAll("[data-kit]").forEach((el) => {
+  el.textContent = KITS[el.dataset.kit] || "";
+});
+document.addEventListener("click", async (e) => {
+  const btn = e.target.closest("[data-copy]");
+  if (!btn) return;
+  const text = KITS[btn.dataset.copy];
+  if (!text) return;
+  try {
+    await navigator.clipboard.writeText(text);
+  } catch {
+    const ta = document.createElement("textarea");
+    ta.value = text;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand("copy");
+    ta.remove();
+  }
+  btn.classList.add("done");
+  const prev = btn.textContent;
+  btn.textContent = "已复制";
+  setTimeout(() => {
+    btn.textContent = prev === "已复制" ? "复制这段" : prev;
+    btn.classList.remove("done");
+  }, 1400);
 });
 
 const hash = location.hash.match(/^#g-(.+)$/);
